@@ -33,7 +33,7 @@ import (
 
 var goldenF = flag.Bool("golden", false, "update golden .json files files")
 
-/*
+
 func TestGoldenData(t *testing.T) {
 	matches, err := filepath.Glob("testdata/*.yml")
 	require.NoError(t, err)
@@ -65,8 +65,9 @@ func TestGoldenData(t *testing.T) {
 		assert.Equal(t, expectedS, actualS)
 	}
 }
-*/
 
+
+/*
 func TestConfigFile(t *testing.T){
 	for _, yf := range Content {
 		b, err := ioutil.ReadFile(yf)
@@ -94,7 +95,7 @@ func TestConfigFile(t *testing.T){
 		assert.Equal(t, expectedS, actualS)
 	}
 }
-
+*/
 // check interfaces
 var (
 	_ yaml.Unmarshaler = (*Duration)(nil) // also compatible with yaml.v3
