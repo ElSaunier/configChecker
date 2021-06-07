@@ -4,15 +4,23 @@ import (
 	"html/template"
 	"net/http"
 	"fmt"
+
+	"https://github.com/gorilla/mux"
 )
 
-type Page struct {
+type Home struct {
 	Title string
 	Description string
 }
 
-func webHandler(w http.ResponseWriter, r *http.Request){
-	td := Page{"ConfigChecker", "Cet outil permet de vérifier vos configurations !"}
+type Verif struct {
+	Title string
+	Description string
+	Result string
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request){
+	td := Home{"ConfigChecker", "Cet outil permet de vérifier vos configurations !"}
 
   	t, err := template.ParseFiles("templates.html")
 	if err != nil {
@@ -24,13 +32,18 @@ func webHandler(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-func 
+func verifHandler(w http.ResponseWriter, r *http.Request){
+	td := Verif{"Vérification de votre configuration","",""}
+}
 
 func main() {
 
 	/* Router ?*/
-	
-	fmt.Println("Server Up and Running")
-	http.HandleFunc("/", webHandler)
-    http.ListenAndServe(":8080", nil)
+	r := mux.newRouter()
+	r.Handler(homeHandler)
+	r.methods("POST").Handler(verifHandler)
+
+	fmt.Println("Server Up and Running ...")
+	srv := &http.Server{Addr: "0.0.0.0:8181", Handler: r}
+    srv.ListenAndServe()
 }
