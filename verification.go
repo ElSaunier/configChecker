@@ -10,6 +10,7 @@ type ConfigFile {
 func (config *ConfigFile) Validate() bool{
 	config.Errors = make(map[string]string)
 
+	
 	promconfig.TestGoldenData()
 
 	return len(config.Errors) == 0
