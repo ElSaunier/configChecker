@@ -12,7 +12,7 @@ type ConfigFile struct{
 
 func (config *ConfigFile) Validate() bool{
 	config.Errors = make(map[string]string)
-	b := byte[]config.Content
+	b := byte[](config.Content)
 
 	fmt.Println("[+] Checking ...")
 
