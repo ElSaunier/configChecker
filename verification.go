@@ -1,5 +1,8 @@
+package main
+
 import (
 	pconfig "promconfig-main/promconfig"
+	"fmt"
 )
 
 type ConfigFile {
@@ -10,8 +13,8 @@ type ConfigFile {
 func (config *ConfigFile) Validate() bool{
 	config.Errors = make(map[string]string)
 
-
-	promconfig.TestGoldenData()
+	fmt.Println("Checking ...")
+	pconfig.TestGoldenData()
 
 	return len(config.Errors) == 0
 }
