@@ -4,8 +4,6 @@ import (
 	"html/template"
 	"net/http"
 	"fmt"
-
-	"https://github.com/gorilla/mux"
 )
 
 type Home struct {
@@ -38,12 +36,8 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 
 func main() {
 
-	/* Router ?*/
-	r := mux.newRouter()
-	r.Handler(homeHandler)
-	r.methods("POST").Handler(verifHandler)
 
 	fmt.Println("Server Up and Running ...")
-	srv := &http.Server{Addr: "0.0.0.0:8181", Handler: r}
+	srv := &http.Server{Addr: "0.0.0.0:8181", Handler: homeHandler}
     srv.ListenAndServe()
 }
