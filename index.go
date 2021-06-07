@@ -36,8 +36,7 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 
 func main() {
 
-
 	fmt.Println("Server Up and Running ...")
-	srv := &http.Server{Addr: "0.0.0.0:8181", Handler: homeHandler}
-    srv.ListenAndServe()
+	http.HanndlerFunc("/",homeHandler)
+    http.ListenAndServe( "0.0.0.0:8181",nil)
 }
