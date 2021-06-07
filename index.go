@@ -3,7 +3,9 @@ package main
 import (
 	"html/template"
 	"net/http"
-	"fmt"
+	"log"
+
+	"github.com/bmizerany/pat"
 )
 
 type Home struct {
@@ -17,26 +19,42 @@ type Verif struct {
 	Result string
 }
 
-func homeHandler(w http.ResponseWriter, r *http.Request){
-	td := Home{"ConfigChecker", "Cet outil permet de vérifier vos configurations !"}
+func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
+	tmpl, err := template.ParseFiles(filename)
+	if err != nil {
+	  log.Println(err)
+	  http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
+	}
+  
+	err := tmpl.Execute(w, data)
+	if err != nil {
+	  log.Println(err)
+	  http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
+	}
+  }  
 
-  	t, err := template.ParseFiles("templates.html")
-	if err != nil {
-		panic(err)
-	}
-	err = t.Execute(w, td)
-	if err != nil {
-		panic(err)
-	}
+func homeHandler(w http.ResponseWriter, r *http.Request){
+	createTemplate(w, "templates/home.html", nil)
+}
+
+func sendHandler(w http.ResponseWriter, r *http.Request){
+
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
-	td := Verif{"Vérification de votre configuration","",""}
+	createTemplate(w, "templates/home.html", nil)
 }
 
 func main() {
 
-	fmt.Println("Server Up and Running ...")
-	http.HandlerFunc("/",homeHandler)
-    http.ListenAndServe( "0.0.0.0:8181",nil)
+	mux := pat.New()
+	mux.Get("/",http.HandlerFunc(homeHandler))
+	mux.Post("/",http.HandlerFunc(sendHandler))
+	mux.Get("/verif",http.HandlerFunc(verifHandler))
+
+	log.Println("Server Up and Running ...")
+	err := http.ListenAndServe("0.0.0.0:1334",mux)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
