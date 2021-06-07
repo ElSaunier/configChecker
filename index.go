@@ -26,7 +26,7 @@ func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
 	  http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
 	}
   
-	err := tmpl.Execute(w, data)
+	err = tmpl.Execute(w, data)
 	if err != nil {
 	  log.Println(err)
 	  http.Error(w, "Sorry, something went wrong", http.StatusInternalServerError)
