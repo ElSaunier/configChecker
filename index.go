@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
 	"html/template"
 	"net/http"
+	"fmt"
 )
 
 type Page struct {
@@ -25,6 +25,7 @@ func webHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func main() {
-	http.HandleFunc("/", handler)
-    log.Fatal(http.ListenAndServe(":456", nil))
+	fmt.Println("Server Up and Running")
+	http.HandleFunc("/", webHandler)
+    	http.ListenAndServe(":8080", nil)
 }
