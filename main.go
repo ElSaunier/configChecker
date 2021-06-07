@@ -54,6 +54,7 @@ func main() {
 
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
+	
 	if err != nil {
 		log.Fatal(err)
 	}
