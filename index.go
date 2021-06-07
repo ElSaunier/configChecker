@@ -1,4 +1,4 @@
-package main
+package configChecker
 
 import (
 	"html/template"
@@ -51,6 +51,10 @@ func main() {
 	mux.Get("/",http.HandlerFunc(homeHandler))
 	mux.Post("/",http.HandlerFunc(sendHandler))
 	mux.Get("/verif",http.HandlerFunc(verifHandler))
+
+	cfg := {"Content",[]}
+
+	Validate(cfg)
 
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
