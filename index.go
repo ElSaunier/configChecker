@@ -24,8 +24,13 @@ func webHandler(w http.ResponseWriter, r *http.Request){
 	}
 }
 
+func 
+
 func main() {
+
+	/* Router ?*/
+	
 	fmt.Println("Server Up and Running")
 	http.HandleFunc("/", webHandler)
-    	http.ListenAndServe(":8080", nil)
+    http.ListenAndServe(":8080", nil)
 }
