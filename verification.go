@@ -6,7 +6,7 @@ import (
 	pconfig "github.com/percona/promconfig"
 )
 
-type ConfigFile {
+type ConfigFile struct{
 	Content string
 	Errors map[string]string
 }
