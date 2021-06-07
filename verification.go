@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"testing"
 
 	pconfig "github.com/percona/promconfig"
 )
@@ -15,7 +16,7 @@ func (config *ConfigFile) Validate() bool{
 	config.Errors = make(map[string]string)
 
 	fmt.Println("Checking ...")
-	pconfig.TestGoldenData()
+	pconfig.TestGoldenData(*testing.T)
 
 	return len(config.Errors) == 0
 }
