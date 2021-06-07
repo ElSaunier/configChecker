@@ -1,8 +1,9 @@
 package main
 
 import (
-	pconfig "promconfig-main/promconfig"
 	"fmt"
+
+	pconfig "github.com/percona/promconfig"
 )
 
 type ConfigFile {
