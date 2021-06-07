@@ -53,7 +53,7 @@ func main() {
 	mux.Get("/verif",http.HandlerFunc(verifHandler))
 
 	log.Println("Server Up and Running ...")
-	err := http.ListenAndServe("0.0.0.0:1334",mux)
+	err := http.ListenAndServe("0.0.0.0:8181",mux)
 	if err != nil {
 		log.Fatal(err)
 	}
