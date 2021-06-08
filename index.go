@@ -65,6 +65,8 @@ func (config *ConfigFile) Validate() bool{
 		var cfg Config
 		err = yaml.Unmarshal(b, &cfg) // Attribue le yaml à l'identité correspondante
 		require.NoError(t, err)
+
+		fmt.Println(cfg)
 		//actualB, err := json.MarshalIndent(cfg, "", "  ")
 		//require.NoError(t, err)
 		//actualB = append(actualB, '\n')
