@@ -1,9 +1,10 @@
-package configChecker
+package main
 
 import (
 	"html/template"
 	"net/http"
 	"log"
+	"configChecker"
 
 	"github.com/bmizerany/pat"
 )
@@ -52,7 +53,8 @@ func main() {
 	mux.Post("/",http.HandlerFunc(sendHandler))
 	mux.Get("/verif",http.HandlerFunc(verifHandler))
 
-	cfg := {"Content",[]}
+	var cfg ConfigFile
+	cfg.Content = "Content"
 
 	Validate(cfg)
 

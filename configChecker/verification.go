@@ -2,7 +2,7 @@ package configChecker
 
 import (
 	"fmt"
-	pconfig "github.com/percona/promconfig"
+	//pconfig "github.com/percona/promconfig"
 )
 
 type ConfigFile struct{
