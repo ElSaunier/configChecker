@@ -34,21 +34,16 @@ type Config struct {
 
 func (Config cfg) VerifCfg (bool) {
 
-	var verifRules bool
+	verifRules := true
 	// Pas de caractères spécieux dans les noms de fichiers
-	r , _ := regexp.Compile("[a-zA-Z0-9-_\/]+")
+	r , _ := regexp.Compile("[a-zA-Z][a-zA-Z0-9-_]+")
 
 
 	for _,s := range cfg.RuleFiles {
-		if (!r.MatchString(s))
+		if !r.MatchString(s)
 			verifRules = false
 	}
 
 
-	return cfg.VerifGCfg() &&
-			cfg.AlertingConfig.VerifACfg() &&
-			verifRules &&
-			cfg.ScrapeConfigs.VerifSCfg() && 
-			cfg.RemoteWriteConfigs.VerifRWCfg() &&
-			cfg.RemoteReadConfigs.VerifRRCfg()
+	return  true
 }
