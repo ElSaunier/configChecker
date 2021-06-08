@@ -4,7 +4,6 @@ import (
 	"html/template"
 	"net/http"
 	"log"
-	"configChecker"
 	"fmt"
 
 	"github.com/bmizerany/pat"
