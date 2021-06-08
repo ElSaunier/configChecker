@@ -65,8 +65,10 @@ func main() {
 
 	var cfg ConfigFile
 	cfg.Content = "Content"
-
-	promtool.CheckConfig("promconfig-main/testdata/test1.yml")
+	
+	fmt.Println("[+] Checking ...")
+	CheckConfig("promconfig-main/testdata/test1.yml")
+	fmt.Println("[-] Checking finished")
 
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)

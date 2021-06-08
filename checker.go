@@ -31,7 +31,7 @@ import (
 	"github.com/prometheus/prometheus/promql"
 	"github.com/prometheus/prometheus/util/promlint"
 )
-/*
+
 func main() {
 	app := kingpin.New(filepath.Base(os.Args[0]), "Tooling for the Prometheus monitoring system.")
 	app.Version(version.Print("promtool"))
@@ -73,7 +73,7 @@ func main() {
 	}
 
 }
-*/
+
 // CheckConfig validates configuration files.
 func CheckConfig(files ...string) int {
 	failed := false
