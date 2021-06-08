@@ -1,5 +1,3 @@
-global config: 
-
 scrape_configs:
   - job_name: blackbox
     honortimestamps:

@@ -5,8 +5,10 @@ import (
 	"net/http"
 	"log"
 	"fmt"
+	"promtool"
 
 	"github.com/bmizerany/pat"
+
 	//pconfig "github.com/percona/promconfig"
 )
 
@@ -52,31 +54,7 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 	createTemplate(w, "templates/home.html", nil)
 }
 
-func (config *ConfigFile) Validate() bool{
-	config.Errors = make(map[string]string)
-	b := []byte(config.Content)
 
-	fmt.Println("[+] Checking ...")
-
-	fmt.Println(b)
-
-	for _, yf := range matches {
-
-		var cfg Config
-		err = yaml.Unmarshal(b, &cfg) // Attribue le yaml à l'identité correspondante
-		require.NoError(t, err)
-
-		fmt.Println(cfg)
-		//actualB, err := json.MarshalIndent(cfg, "", "  ")
-		//require.NoError(t, err)
-		//actualB = append(actualB, '\n')
-	}
-	
-
-	fmt.Println("[-] Checking finished")
-
-	return cfg.VerificationCfg() 
-}
 
 
 func main() {
@@ -89,7 +67,7 @@ func main() {
 	var cfg ConfigFile
 	cfg.Content = "Content"
 
-	cfg.Validate()
+	promtool.CheckConfig()
 
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
