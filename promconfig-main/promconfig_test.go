@@ -47,7 +47,7 @@ func TestGoldenData(t *testing.T) {
 		var cfg Config
 		err = yaml.Unmarshal(b, &cfg)
 		require.NoError(t, err)
-		fmt.Println(cfg.ScrapeConfigs[0].Scheme)
+		fmt.Println(*(cfg.ScrapeConfigs[0].MetricsPath))
 		actualB, err := json.MarshalIndent(cfg, "", "  ")
 		require.NoError(t, err)
 		actualB = append(actualB, '\n')//=>Création du JSON
