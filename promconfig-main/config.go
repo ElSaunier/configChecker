@@ -35,7 +35,7 @@ type Config struct {
 func (Config cfg) VerifCfg (bool) {
 
 	verifRules := true
-	// Pas de caractères spécieux dans les noms de fichiers
+	// Pas de caractères spéciaux dans les noms de fichiers
 	r , _ := regexp.Compile("[a-zA-Z][a-zA-Z0-9-_]+")
 
 
