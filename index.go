@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/bmizerany/pat"
+	"github.com/prometheus/prometheus/config"
 
 	//pconfig "github.com/percona/promconfig"
 )
@@ -57,6 +58,8 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 
 
 func main() {
+
+	config.LoadFile("./prometheus.yml")
 
 	mux := pat.New()
 	mux.Get("/",http.HandlerFunc(homeHandler))
