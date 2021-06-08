@@ -25,6 +25,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"fmt"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -45,6 +46,7 @@ func TestGoldenData(t *testing.T) {
 
 		var cfg Config
 		err = yaml.Unmarshal(b, &cfg)
+		fmt.Println(cfg.ScrapeConfigs[0].JobName)
 		require.NoError(t, err)
 		actualB, err := json.MarshalIndent(cfg, "", "  ")
 		require.NoError(t, err)
