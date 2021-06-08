@@ -46,11 +46,10 @@ func TestGoldenData(t *testing.T) {
 
 		var cfg Config
 		err = yaml.Unmarshal(b, &cfg)
-		fmt.Println(cfg.ScrapeConfigs[0].JobName)
 		require.NoError(t, err)
 		actualB, err := json.MarshalIndent(cfg, "", "  ")
 		require.NoError(t, err)
-		actualB = append(actualB, '\n')
+		actualB = append(actualB, '\n')//=>Création du JSON
 
 		jf := strings.TrimSuffix(yf, filepath.Ext(yf)) + ".json"
 
