@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"log"
 	"fmt"
+	"os/exec"
 
 	"github.com/bmizerany/pat"
-	"github.com/prometheus/prometheus/cmd/promtool/"
-	"github.com/Azure/azure-sdk-for-go/tree/bd73d950fa4440dae889bd9917bff7cef539f86e/arm/compute"
+	//"github.com/prometheus/prometheus/cmd/promtool/"
 
 	//pconfig "github.com/percona/promconfig"
 )
@@ -69,7 +69,14 @@ func main() {
 	cfg.Content = "Content"
 	
 	fmt.Println("[+] Checking ...")
-	CheckConfig("promconfig-main/testdata/test1.yml")
+	//CheckConfig("promconfig-main/testdata/test1.yml")
+	cmd := exec.Command("promtool", "check config", "promconfig-main/testdata/test1.yml")
+	stdout, err := cmd.Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(stdout))
 	fmt.Println("[-] Checking finished")
 
 	log.Println("Server Up and Running ...")
