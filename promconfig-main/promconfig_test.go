@@ -50,6 +50,8 @@ func TestGoldenData(t *testing.T) {
 		actualB, err := json.MarshalIndent(cfg, "", "  ")
 		require.NoError(t, err)
 		actualB = append(actualB, '\n')//=>Création du JSON
+		//bytes, _ := yaml.Marshal(&cfg)
+		//fmt.Println(string(bytes))
 
 		jf := strings.TrimSuffix(yf, filepath.Ext(yf)) + ".json"
 
