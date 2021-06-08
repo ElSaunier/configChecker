@@ -106,7 +106,7 @@ func main() {
 	var cfg ConfigFile
 	cfg.Content = "Content"
 
-	Validate(cfg)
+	cfg.Validate()
 
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
