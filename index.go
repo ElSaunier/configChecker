@@ -70,13 +70,13 @@ func main() {
 	
 	fmt.Println("[+] Checking ...")
 	//CheckConfig("promconfig-main/testdata/test1.yml")
-	cmd := exec.Command("promtool", "check config", "promconfig-main/testdata/test1.yml")
-	stdout, err := cmd.Output()
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	fmt.Println(string(stdout))
+	cmd := exec.Command("promtool", "check config", "promconfig-main/testdata/test1.yml")
+    out, err := cmd.CombinedOutput()
+    if err != nil {
+        log.Fatalf("cmd.Run() failed with %s\n", err)
+    }
+    fmt.Printf("Combined out:\n%s\n", string(out))
 	fmt.Println("[-] Checking finished")
 
 	log.Println("Server Up and Running ...")
