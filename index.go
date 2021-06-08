@@ -7,7 +7,8 @@ import (
 	"fmt"
 
 	"github.com/bmizerany/pat"
-	"github.com/prometheus/prometheus/cmd/promtool"
+	"github.com/prometheus/prometheus/cmd/promtool/"
+	"github.com/Azure/azure-sdk-for-go/tree/bd73d950fa4440dae889bd9917bff7cef539f86e/arm/compute"
 
 	//pconfig "github.com/percona/promconfig"
 )
