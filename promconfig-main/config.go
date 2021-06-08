@@ -17,11 +17,11 @@
 // limitations under the License.
 
 package promconfig // import "github.com/percona/promconfig"
-
+/*
 import (
 	"regexp"
 )
-
+*/
 // Config is the top-level configuration for Prometheus's config files.
 type Config struct {
 	GlobalConfig       GlobalConfig         `yaml:"global"`
@@ -31,7 +31,7 @@ type Config struct {
 	RemoteWriteConfigs []*RemoteWriteConfig `yaml:"remote_write,omitempty"`
 	RemoteReadConfigs  []*RemoteReadConfig  `yaml:"remote_read,omitempty"`
 }
-
+/*
 func (Config cfg) VerifCfg (bool) {
 
 	verifRules := true
@@ -47,3 +47,4 @@ func (Config cfg) VerifCfg (bool) {
 
 	return  true
 }
+*/

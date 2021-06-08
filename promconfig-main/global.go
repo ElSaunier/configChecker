@@ -32,7 +32,7 @@ type GlobalConfig struct {
 	// The labels to add to any timeseries that this Prometheus instance scrapes.
 	ExternalLabels map[string]string `yaml:"external_labels,omitempty"`
 }
-
+/*
 func (GlobalConfig cfg) VerifGCfg(bool){
 	// Pas de caractères spéciaux dans les noms de fichiers
 	r , _ := regexp.Compile("[a-zA-Z][a-zA-Z0-9-_]+")
@@ -49,3 +49,4 @@ func (GlobalConfig cfg) VerifGCfg(bool){
 
 	return true
 }
+*/
