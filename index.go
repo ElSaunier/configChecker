@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"log"
 	"fmt"
-	"promtool"
 
 	"github.com/bmizerany/pat"
 
