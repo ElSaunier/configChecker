@@ -71,6 +71,7 @@ func (config *ConfigFile) Validate() bool{
 		require.NoError(t, err)
 		actualB = append(actualB, '\n')
 
+
 		expectedB, err := ioutil.ReadFile(jf)
 		require.NoError(t, err)
 
