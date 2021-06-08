@@ -18,6 +18,10 @@
 
 package promconfig // import "github.com/percona/promconfig"
 
+import (
+	"regexp"
+)
+
 // Config is the top-level configuration for Prometheus's config files.
 type Config struct {
 	GlobalConfig       GlobalConfig         `yaml:"global"`
@@ -26,4 +30,25 @@ type Config struct {
 	ScrapeConfigs      []*ScrapeConfig      `yaml:"scrape_configs,omitempty"`
 	RemoteWriteConfigs []*RemoteWriteConfig `yaml:"remote_write,omitempty"`
 	RemoteReadConfigs  []*RemoteReadConfig  `yaml:"remote_read,omitempty"`
+}
+
+func (Config cfg) VerifCfg (bool) {
+
+	verifRules bool
+	// Pas de caractères spécieux dans les noms de fichiers
+	r , _ := regexp.Compile("[a-zA-Z0-9-_\/]+")
+
+
+	for _,s := range cfg.RuleFiles {
+		if (!r.MatchString(s))
+			verifRules = false
+	}
+
+
+	return cfg.VerifGCfg() &&
+			cfg.AlertingConfig.VerifACfg() &&
+			verifRules &&
+			cfg.ScrapeConfigs.VerifSCfg() && 
+			cfg.RemoteWriteConfigs.VerifRWCfg() &&
+			cfg.RemoteReadConfigs.VerifRRCfg()
 }
