@@ -80,7 +80,12 @@ func main() {
 	fmt.Println("[-] Checking finished")
 
 	log.Println("Server Up and Running ...")
+<<<<<<< HEAD:index.go
 	err = http.ListenAndServe("0.0.0.0:8181",mux)
+=======
+	err := http.ListenAndServe("0.0.0.0:8181",mux)
+	
+>>>>>>> master:main.go
 	if err != nil {
 		log.Fatal(err)
 	}
