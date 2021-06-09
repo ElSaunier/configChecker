@@ -13,8 +13,8 @@ func TestValidatePromtool(t *testing.T) {
 	}
 	
 	cmd := exec.Command("promtool","check","config",file.Name())
-   	out, errR := cmd.CombinedOutput()
-    if errR != nil {
+   	_, err := cmd.CombinedOutput()
+    if err != nil {
     	t.Errorf("cmd.Run() failed with %s\n", err)
    	}
 }
@@ -26,8 +26,8 @@ func TestValidateAlertManager(t *testing.T) {
 	}
 
 	cmd := exec.Command("amtool","check-config",file.Name())
-   	out, errR := cmd.CombinedOutput()
-    if errR != nil {
+   	_, err = cmd.CombinedOutput()
+    if err != nil {
     	t.Errorf("cmd.Run() failed with %s\n", err)
    	}    
 }
