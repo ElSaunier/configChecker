@@ -5,17 +5,19 @@
         <h1> {{.Title}} </h1>
 
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event,Promtool)">Promtool</button>
-            <button class="tablinks" onclick="openTab(event,AlertManager)">AlertManager</button>
+            <button class="tablinks" onclick="openTab(event,'Promtool')">Promtool</button>
+            <button class="tablinks" onclick="openTab(event,'AlertManager')">AlertManager</button>
         </div>
 
         <form method="POST" action="/" >  
             <div class="tabcontent" id="Promtool">
                 <textarea name="config" placeholder="Copiez le contenu de votre fichier Promtool"></textarea>
+                <input type="number" class="hidden-input" name="identifier" value=1/>
             </div>
 
             <div class="tabcontent" id="AlertManager">
                 <textarea name="config" placeholder="Copiez le contenu de votre fichier Alertmanager"></textarea>
+                <input type="number" class="hidden-input" name="identifier" value=2/>
             </div>
 
             <input type="submit" id="Btnverif" value="Vérifier la configuration"/>
@@ -45,6 +47,12 @@
     evt.currentTarget.className += " active";
     }   
 </script>
+
+<style>
+    .hidden_input{
+        display:none;
+    }
+</style>
 
 
   
