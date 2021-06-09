@@ -58,7 +58,7 @@ func (config ConfigFile) ValidatePromtool() (string, string){
 
 	fmt.Println("[+] Checking ...")
 
-	file,errFile := os.openFile("data/verif.yml",os.O_RDWR|os.O_TRUNC)
+	file,errFile := os.openFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 	if errFile != nil {
 		log.Fatal("Cannot create File : %s\n",errFile)
 	}
@@ -91,7 +91,7 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 	
 		fmt.Println("[+] Checking ...")
 	
-		file,errFile := os.openFile("data/verif.yml",os.O_RDWR|os.O_TRUNC)
+		file,errFile := os.openFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 		if errFile != nil {
 			log.Fatal("Cannot create File : %s\n",errFile)
 		}
