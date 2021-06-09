@@ -48,8 +48,11 @@ func homeHandler(w http.ResponseWriter, r *http.Request){
 func sendHandler(w http.ResponseWriter, r *http.Request){
 		var cfg ConfigFile
 		cfg.Content = r.PostFormValue("config")
-
-		if strconv.Atoi(r.PostFormValue("identifier")) == 1 {
+		i, err := strconv.Atoi(r.PostFormValue("idenfitier")) 
+		if err != nil{
+			log.Fatal("Impossible to define used tool")
+		}
+		if i == 1 {
 			res.Content, res.Result, res.Valid = cfg.ValidatePromtool()
 		} else {
 			res.Content, res.Result, res.Valid = cfg.ValidateAlertManager()
