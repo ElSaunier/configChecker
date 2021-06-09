@@ -60,17 +60,17 @@ func (config ConfigFile) ValidatePromtool() (string, string){
 
 	file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 	if errFile != nil {
-		log.Fatal("Cannot create File : %s\n",errFile)
+		log.Fatal("Cannot create File : ",errFile)
 	}
 	_, errWrite := file.Write([]byte(config.Content))
 	if errWrite != nil {
-		log.Fatal("Cannot write in File : %s\n",errWrite)
+		log.Fatal("Cannot write in File : ",errWrite)
 	}
 
 	cmd := exec.Command("promtool","check","config",file.Name())
    	out, err := cmd.CombinedOutput()
     if err != nil {
-    	fmt.Println("cmd.Run() failed with %s\n", err)
+    	fmt.Printf("cmd.Run() failed with %s\n", err)
    	} else {
 		fmt.Printf("Combined out:\n%s\n", string(out))
 	}
@@ -93,17 +93,17 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 	
 		file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 		if errFile != nil {
-			log.Fatal("Cannot create File : %s\n",errFile)
+			log.Fatal("Cannot create File : ",errFile)
 		}
 		_, errWrite := file.Write([]byte(config.Content))
 		if errWrite != nil {
-			log.Fatal("Cannot write in File : %s\n",errWrite)
+			log.Fatal("Cannot write in File :",errWrite)
 		}
 	
 		cmd := exec.Command("amtool","check-config",file.Name())
 		   out, err := cmd.CombinedOutput()
 		if err != nil {
-			fmt.Println("cmd.Run() failed with %s\n", err)
+			fmt.Printf("cmd.Run() failed with %s\n", err)
 		   } else {
 			fmt.Printf("Combined out:\n%s\n", string(out))
 		}
