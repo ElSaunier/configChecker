@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"log"
+	"strconv"
 
 	"github.com/bmizerany/pat"
 )
@@ -48,7 +49,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 		var cfg ConfigFile
 		cfg.Content = r.PostFormValue("config")
 
-		if r.PostFormValue("identifier") == 1 {
+		if strconv.Atoi(r.PostFormValue("identifier")) == 1 {
 			res.Content, res.Result, res.Valid = cfg.ValidatePromtool()
 		} else {
 			res.Content, res.Result, res.Valid = cfg.ValidateAlertManager()
