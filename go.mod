@@ -2,7 +2,6 @@ module contact-form.example.com
 
 go 1.13
 
-<<<<<<< HEAD
 require (
 	github.com/Azure/go-autorest/autorest v0.11.19 // indirect
 	github.com/Azure/go-autorest/autorest/adal v0.9.14 // indirect
@@ -26,6 +25,3 @@ require (
 	k8s.io/klog v1.0.0 // indirect
 	k8s.io/utils v0.0.0-20210527160623-6fdb442a123b // indirect
 )
-=======
-require github.com/percona/promconfig v0.2.1 // indirect
->>>>>>> master
