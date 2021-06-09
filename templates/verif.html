@@ -1,18 +1,122 @@
 <!DOCTYPE html>
 
 <html>
+    <head>
+        <link rel="stylesheet" href="bootstrap-5.0.1-dist/css/bootstrap.min.css">
+    </head>
+
     <body>
-        <h1> {{.Title}} </h1>
+        <nav class="navbar">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">ConfigChecker</span>
+            </div>
+            
+        </nav>
 
-        <h2> Résultat de la vérification </h2>
+        <div id="maincontent">
+            <h5>
+                Résultats de la vérification de la configuration
+            </h5>
 
-        <div id="content">
-            {{.Content}}
-        </div>
+            <div id="compare">
+                <span>
+                    <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareacontent" style="height:45em; width: 60em;" >{{.Content}}</textarea>
+                </span>
 
-        <div id="result">
-            {{.Result}}
-        </div>
-
+                <div class="col-md-3 col-sm-6" id="result">
+                    <div class="box blue">
+                        <div class="boxcontent">
+                            <h3 class="title">Vérification</h3>
+                        </div>
+                        <p class="description">{{.Result}}</p>
+                    </div>
+                </div>
+            </div>
+        
+        </div> 
     </body>
-</html>
+</html> 
+
+<script src="bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+
+    #maincontent, #verifybtn{
+        margin: 1%;
+    }
+
+    #maincontent{
+        box-shadow: 0px 10px 15px -13px #000000;
+        background-color: #f3f3f3;
+        padding: 1%;
+    }
+
+    #compare{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #result{
+        height: 20em;
+        padding-left: 3.5%;
+    }
+
+    .box{
+    background-color: #fff;
+    text-align: center;
+    padding: 0 0 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px -2px rgba(0,0,0,0.2);
+    }
+
+    .box .boxcontent{
+        color: #fff;
+        background: linear-gradient(to right,#E54A71, #F3235F);
+        padding: 22px 15px;
+        margin: 0 0 20px;
+        border-radius: 18px 18px 0 0;
+    }
+
+    .box{
+        font-size: 40px;
+        line-height: 40px;
+        margin: 0 0 12px;
+        width: 10em;
+        
+    }
+
+    .box .title{
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-transform: capitalize;
+        margin: 0;
+    }
+
+    .box .description{
+        color: #999;
+        font-size: 14px;
+        line-height: 24px;
+        margin: 0 15px 15px;
+    }
+
+    .box.blue .boxcontent{ 
+        background: linear-gradient(to right, #000000, #0095ff); 
+    }
+
+    .description{
+        height: 15em;
+        overflow:auto;
+    }
+
+    .navbar{
+        background: linear-gradient(to right, #000000, #0095ff);
+        color: white;
+    }
+    
+</style>
+
+
+  

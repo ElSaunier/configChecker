@@ -11,7 +11,7 @@ type ConfigFile struct{
 	Content string
 }
 
-func (config ConfigFile) ValidatePromtool() (string, string, bool){
+func (config ConfigFile) ValidatePromtool() (string, string){
 /*
 	var cfg ConfigFile
 	cfg.Content = 
@@ -81,48 +81,11 @@ func (config ConfigFile) ValidatePromtool() (string, string, bool){
 	return config.Content, string(out), err == nil
 }
 
-func (config ConfigFile) ValidateAlertManager() (string, string, bool){
+func (config ConfigFile) ValidateAlertManager() (string, string){
 	/*
 		var cfg ConfigFile
 		cfg.Content = 
-	`scrape_configs:
-		- job_name: blackbox
-		  params:
-			module:
-			  - http_2xx
-		  scrape_interval: 1m
-		  scrape_timeout: 10s
-		  metrics_path: /probe
-		  scheme: http
-	  
-		  static_configs:
-			- targets:
-				- http://host/metrics
-		  ec2_sd_configs:
-			- endpoint: http://host
-			  port: 8080
-			  region: us-east-1
-			  refresh_interval: 1m
-			  filters:
-				- name: "tag:prometheus:tag"
-				  values:
-				  - xyz
-	  
-		  gce_sd_configs:
-			- project: example-project
-			  zone: us-east1-a
-			  port: 8181
-			- project: example-project
-			  zone: us-east1-b
-			  port: 8181
-	  
-		  relabel_configs:
-			- source_labels: [__address__]
-			  target_label: __param_target
-			- source_labels: [__param_target]
-			  target_label: instance
-			- source_labels: [__param_target]
-			  target_label: node_name`
+	``
 	*/
 	
 	
