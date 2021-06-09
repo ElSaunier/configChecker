@@ -11,7 +11,7 @@ type ConfigFile struct{
 	Content string
 }
 
-func (config *ConfigFile) Validate() string, string, bool{
+func (config ConfigFile) Validate() (string, string, bool){
 /*
 	var cfg ConfigFile
 	cfg.Content = 

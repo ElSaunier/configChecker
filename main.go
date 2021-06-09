@@ -45,8 +45,9 @@ func homeHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func sendHandler(w http.ResponseWriter, r *http.Request){
-		//cfg.content = r.PostFormValue("config")
-		res.content, res.result, res.Valid = cfg.Validate()
+		var cfg ConfigFile
+		cfg.Content = r.PostFormValue("config")
+		res.Content, res.Result, res.Valid = cfg.Validate()
 
 		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
