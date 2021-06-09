@@ -1,3 +1,0 @@
-Checking promconfig-main/testdata/test1.yml
-  SUCCESS: 0 rule files found
-

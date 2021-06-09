@@ -5,6 +5,8 @@ scrape_configs:
         - http_2xx
     scrape_interval: 1m
     scrape_timeout: 10s
+    metrics_path: /probe
+    scheme: http
 
     static_configs:
       - targets:
