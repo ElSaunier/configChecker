@@ -13,7 +13,7 @@ func TestValidatePromtool(t *testing.T) {
 	}
 	
 	cmd := exec.Command("promtool","check","config",file.Name())
-   	_, err := cmd.CombinedOutput()
+   	_, err = cmd.CombinedOutput()
     if err != nil {
     	t.Errorf("cmd.Run() failed with %s\n", err)
    	}
