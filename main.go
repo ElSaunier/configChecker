@@ -5,12 +5,8 @@ import (
 	"net/http"
 	"log"
 	"fmt"
-	"os/exec"
 
 	"github.com/bmizerany/pat"
-	//"github.com/prometheus/prometheus/cmd/promtool/"
-
-	//pconfig "github.com/percona/promconfig"
 )
 
 type Home struct {
