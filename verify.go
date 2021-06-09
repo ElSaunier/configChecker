@@ -1,6 +1,9 @@
 package main
 
 import (
+	"os"
+	"fmt"
+	"log"
 	"os/exec"
 )
 
@@ -16,12 +19,12 @@ func (config *ConfigFile) Validate() bool{
 	if errFile != nil {
 		log.Fatal("Cannot create File : %s\n",errFile)
 	}
-	_, errWrite := File.Write([]byte(config.Content))
+	_, errWrite := file.Write([]byte(config.Content))
 	if errWrite != nil {
 		log.Fatal("Cannot write in File : %s\n",errWrite)
 	}
 
-	cmd := exec.Command("promtool","check","config",file)
+	cmd := exec.Command("promtool","check","config",file.Name())
    	out, err := cmd.CombinedOutput()
     if err != nil {
     	fmt.Println("cmd.Run() failed with %s\n", err)
@@ -29,7 +32,7 @@ func (config *ConfigFile) Validate() bool{
 		fmt.Printf("Combined out:\n%s\n", string(out))
 	}
    	
-	file.close()
+	file.Close()
 	fmt.Println("[-] Checking finished")
 
 	return err == nil
