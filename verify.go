@@ -78,7 +78,7 @@ func (config ConfigFile) ValidatePromtool() (string, string){
 	file.Close()
 	fmt.Println("[-] Checking finished")
 
-	return config.Content, string(out), err == nil
+	return config.Content, string(out)
 }
 
 func (config ConfigFile) ValidateAlertManager() (string, string){
@@ -111,5 +111,5 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 		file.Close()
 		fmt.Println("[-] Checking finished")
 	
-		return config.Content, string(out), err == nil
+		return config.Content, string(out)
 	}
