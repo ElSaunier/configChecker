@@ -9,11 +9,6 @@ import (
 	"github.com/bmizerany/pat"
 )
 
-type Home struct {
-	Title string
-	Description string
-}
-
 type Verif struct {
 	Title string
 	Content string
@@ -40,9 +35,7 @@ func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
   }  
 
 func homeHandler(w http.ResponseWriter, r *http.Request){
-	first.Title = "ConfigChecker"
-	first.Description = "Outil de vérification de vos configurations Promtool et Alertmanagertool"
-	createTemplate(w, "templates/home.html", first)
+	createTemplate(w, "templates/home.html", nil)
 }
 
 func sendHandler(w http.ResponseWriter, r *http.Request){

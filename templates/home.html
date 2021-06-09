@@ -1,98 +1,84 @@
 <!DOCTYPE html>
 
 <html>
+    <head>
+        <link rel="stylesheet" href="bootstrap-5.0.1-dist/css/bootstrap.min.css">
+    </head>
+
     <body>
-        <h1 id="maintitle"> {{.Title}} </h1>
-
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event,'Promtool')">Promtool</button>
-            <button class="tablinks" onclick="openTab(event,'AlertManager')">AlertManager</button>
-        </div>
-
-        <form method="POST" action="/" >  
-            <div class="tabcontent" id="Promtool">
-                <textarea name="config" placeholder="Copiez le contenu de votre fichier Promtool"></textarea>
-                <input type="number" class="hiddeninput" name="identifier" value=1/>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">ConfigChecker</span>
+              <span class="navbar-brand mb-0 h1"></span>
             </div>
+            
+        </nav>
 
-            <div class="tabcontent" id="AlertManager">
-                <textarea name="config" placeholder="Copiez le contenu de votre fichier Alertmanager"></textarea>
-                <input type="number" class="hidden-input" name="identifier" value=2/>
-            </div>
+        <div id="maincontent">
 
-            <input type="submit" id="Btnverif" value="Vérifier la configuration"/>
-        </form>
+            <h5>
+                Outil de vérification de vos configurations Promtool et Alertmanagertool
+            </h5>
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" id="prom-tab" data-bs-toggle="tab" data-bs-target="#prom" type="button" role="tab" aria-controls="prom" aria-selected="true">Promtool</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="alert-tab" data-bs-toggle="tab" data-bs-target="#alert" type="button" role="tab" aria-controls="alert" aria-selected="true"> Alertmanagertool</a>
+                </li>
+            </ul>
+
+            <form method="POST" action="/"> 
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="prom" role="tabpanel" aria-labelledby="prom-tab">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
+                            <label for="textareaprom">Copiez le contenu de votre fichier Promtool</label>
+                            <input type="number" class="hiddeninput" name="identifier" value="1"/>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="alert" role="tabpanel" aria-labelledby="alert-tab">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
+                            <label for="textareaalert">Copiez le contenu de votre fichier Alertmanagertool</label>
+                        </div>
+                        <input type="number" class="hiddeninput" name="identifier" value="2"/>
+                    </div>
+                </div>
+                <button type="submit" id="verifybtn" class="btn btn-primary">Vérifier la configuration</button>
+            </form>
+        </div> 
     </body>
-</html>
+</html> 
 
-<script>
-    function openTab(evt, tool) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tool).style.display = "block";
-    evt.currentTarget.className += " active";
-    }   
-</script>
+<script src="bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
     .hiddeninput{
         display:none;
     }
 
-    #maintitle{
-        background-color: #3d3d3b;
-        color: #70706c;
-    }
-
-    /* Style the tab */
-    .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #fdfdfd;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .tab button {
-      background-color: inherit;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-      background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-      background-color: rgb(0, 0, 0);
-    }
-
-    /* Style the tab content */
     .tabcontent {
       display: none;
       padding: 6px 12px;
-      border: 1px solid rgb(8, 31, 240);
       border-top: none;
     }
+
+    .form-control{
+        border-top: none;
+        border-top-left-radius: 0%;
+        height: 49em;
+    }
+
+    #maincontent, #verifybtn{
+        margin: 1%;
+    }
+
+    #maincontent{
+        box-shadow: 0px 10px 15px -13px #000000;
+    }
+    
 </style>
 
 
