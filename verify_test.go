@@ -7,27 +7,27 @@ import (
 )
 
 func TestValidatePromtool(t *testing.T) {
-	file,err := os.open("testdata/test.yml")
+	file,err := os.Open("testdata/test.yml")
 	if err != nil {
 		t.Errorf("Cannot open File : %s\n",err)
 	}
 	
 	cmd := exec.Command("promtool","check","config",file.Name())
-   	out, err = cmd.CombinedOutput()
-    if err != nil {
+   	out, errR := cmd.CombinedOutput()
+    if errR != nil {
     	t.Errorf("cmd.Run() failed with %s\n", err)
    	}
 }
 
 func TestValidateAlertManager(t *testing.T) {
-	file,err := os.open("testdata/testam.yml")
+	file,err := os.Open("testdata/testam.yml")
 	if err != nil {
 		t.Errorf("Cannot open File : %s\n",err)
 	}
 
 	cmd := exec.Command("amtool","check-config",file.Name())
-   	out, err = cmd.CombinedOutput()
-    if err != nil {
+   	out, errR := cmd.CombinedOutput()
+    if errR != nil {
     	t.Errorf("cmd.Run() failed with %s\n", err)
    	}    
 }
