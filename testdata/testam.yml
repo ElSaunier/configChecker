@@ -1,0 +1,32 @@
+receivers:
+  - name: pei-receiver
+    webhook_configs:
+      - url: "http://prometheus-msteams.monitoring:2000/pei"
+        send_resolved: true
+  - name: prom-is-up
+    webhook_configs:
+      - url: "http://prometheus-msteams.monitoring:2000/prom-is-up"
+  - name: updates
+    webhook_configs:
+      - url: "http://prometheus-msteams.monitoring:2000/updates"
+  - name: blackbox
+    webhook_configs:
+      - url: "http://prometheus-msteams.monitoring:2000/blackbox"
+route:
+  group_wait: 10s
+  group_interval: 5m
+  receiver: pei-receiver
+  repeat_interval: 3h
+  routes:
+    - receiver: 'prom-is-up'
+      repeat_interval: 1h
+      match:
+        for: PROM
+    - receiver: 'updates'
+      repeat_interval: 24h
+      match:
+        for: UPDATES
+    - receiver: 'blackbox'
+      repeat_interval: 5m
+      match:
+        for: BLACKBOX
