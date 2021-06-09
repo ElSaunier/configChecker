@@ -48,10 +48,11 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 		var cfg ConfigFile
 		cfg.Content = r.PostFormValue("config")
 
-		if r.PostFormValue("identifier") == 1
+		if r.PostFormValue("identifier") == 1 {
 			res.Content, res.Result, res.Valid = cfg.ValidatePromtool()
-		else
+		} else {
 			res.Content, res.Result, res.Valid = cfg.ValidateAlertManager()
+		}
 
 		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
