@@ -4,7 +4,6 @@ import (
 	"html/template"
 	"net/http"
 	"log"
-	"fmt"
 
 	"github.com/bmizerany/pat"
 )
@@ -18,11 +17,6 @@ type Verif struct {
 	Title string
 	Content string
 	Result string
-}
-
-type ConfigFile struct{
-	Content string
-	Errors map[string]string
 }
 
 func createTemplate(w http.ResponseWriter, filename string, data interface{}) {

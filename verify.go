@@ -4,7 +4,7 @@ import (
 	"os/exec"
 )
 
-type ConfigFile {
+type ConfigFile struct{
 	Content string
 }
 
