@@ -51,7 +51,6 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
-	res.Title = "Résultat de la vérification"
 	createTemplate(w, "templates/verif.html", res)
 }
 
