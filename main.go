@@ -17,7 +17,12 @@ type Verif struct {
 	Title string
 	Content string
 	Result string
+	Valid bool
+
 }
+
+var first Home
+var res Verif
 
 func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
 	tmpl, err := template.ParseFiles(filename)
@@ -34,59 +39,21 @@ func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
   }  
 
 func homeHandler(w http.ResponseWriter, r *http.Request){
-	createTemplate(w, "templates/home.html", nil)
+	first.Title = "ConfigChecker"
+	first.Description = "Outil de vérification de vos configurations Promtool et Alertmanagertool"
+	createTemplate(w, "templates/home.html", first)
 }
 
 func sendHandler(w http.ResponseWriter, r *http.Request){
-	var cfg ConfigFile
-	cfg.Content = 
-`scrape_configs:
-	- job_name: blackbox
-	  params:
-		module:
-		  - http_2xx
-	  scrape_interval: 1m
-	  scrape_timeout: 10s
-	  metrics_path: /probe
-	  scheme: http
-  
-	  static_configs:
-		- targets:
-			- http://host/metrics
-	  ec2_sd_configs:
-		- endpoint: http://host
-		  port: 8080
-		  region: us-east-1
-		  refresh_interval: 1m
-		  filters:
-			- name: "tag:prometheus:tag"
-			  values:
-			  - xyz
-  
-	  gce_sd_configs:
-		- project: example-project
-		  zone: us-east1-a
-		  port: 8181
-		- project: example-project
-		  zone: us-east1-b
-		  port: 8181
-  
-	  relabel_configs:
-		- source_labels: [__address__]
-		  target_label: __param_target
-		- source_labels: [__param_target]
-		  target_label: instance
-		- source_labels: [__param_target]
-		  target_label: node_name`
-
 		//cfg.content = r.PostFormValue("config")
-		cfg.Validate()
+		res.content, res.result, res.Valid = cfg.Validate()
 
 		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
-	createTemplate(w, "templates/verif.html", nil)
+	res.Title = "Résultat de la vérification"
+	createTemplate(w, "templates/verif.html", res)
 }
 
 
