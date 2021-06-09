@@ -9,14 +9,13 @@
             <button class="tablinks" onclick="openTab(event,AlertManager)">AlertManager</button>
         </div>
 
-        <!-- /verif peut-être remplacé par /-->
-        <form method="POST" action="/verif" name="ticketForm">  
+        <form method="POST" action="/" >  
             <div class="tabcontent" id="Promtool">
-                <textarea placeholder="Copiez le contenu de votre fichier Promtool"></textarea>
+                <textarea name="config" placeholder="Copiez le contenu de votre fichier Promtool"></textarea>
             </div>
 
             <div class="tabcontent" id="AlertManager">
-                <textarea placeholder="Copiez le contenu de votre fichier Alertmanager"></textarea>
+                <textarea name="config" placeholder="Copiez le contenu de votre fichier Alertmanager"></textarea>
             </div>
 
             <input type="submit" id="Btnverif" value="Vérifier la configuration"/>

@@ -20,7 +20,7 @@ type Home struct {
 
 type Verif struct {
 	Title string
-	Description string
+	Content string
 	Result string
 }
 
@@ -48,11 +48,55 @@ func homeHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func sendHandler(w http.ResponseWriter, r *http.Request){
+	var cfg ConfigFile
+	cfg.Content = 
+`scrape_configs:
+	- job_name: blackbox
+	  params:
+		module:
+		  - http_2xx
+	  scrape_interval: 1m
+	  scrape_timeout: 10s
+	  metrics_path: /probe
+	  scheme: http
+  
+	  static_configs:
+		- targets:
+			- http://host/metrics
+	  ec2_sd_configs:
+		- endpoint: http://host
+		  port: 8080
+		  region: us-east-1
+		  refresh_interval: 1m
+		  filters:
+			- name: "tag:prometheus:tag"
+			  values:
+			  - xyz
+  
+	  gce_sd_configs:
+		- project: example-project
+		  zone: us-east1-a
+		  port: 8181
+		- project: example-project
+		  zone: us-east1-b
+		  port: 8181
+  
+	  relabel_configs:
+		- source_labels: [__address__]
+		  target_label: __param_target
+		- source_labels: [__param_target]
+		  target_label: instance
+		- source_labels: [__param_target]
+		  target_label: node_name`
 
+		//cfg.content = r.PostFormValue("config")
+		cfg.Validate()
+
+		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
-	createTemplate(w, "templates/home.html", nil)
+	createTemplate(w, "templates/verif.html", nil)
 }
 
 
@@ -65,20 +109,7 @@ func main() {
 	mux.Post("/",http.HandlerFunc(sendHandler))
 	mux.Get("/verif",http.HandlerFunc(verifHandler))
 
-	var cfg ConfigFile
-	cfg.Content = "Content"
 	
-	fmt.Println("[+] Checking ...")
-	//CheckConfig("promconfig-main/testdata/test1.yml")
-
-	cmd := exec.Command("promtool","check","config","testdata/test.yml")
-   	out, err := cmd.CombinedOutput()
-    	if err != nil {
-        	log.Fatalf("cmd.Run() failed with %s\n", err)
-   	}
-   	fmt.Printf("Combined out:\n%s\n", string(out))
-	fmt.Println("[-] Checking finished")
-
 	log.Println("Server Up and Running ...")
 	err = http.ListenAndServe("0.0.0.0:8181",mux)
 	
