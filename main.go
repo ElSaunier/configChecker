@@ -42,9 +42,10 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 		cfg.Content = r.PostFormValue("config")
 				
 		if cfg.Content != "" {
-			i, err := strconv.Atoi(r.PostFormValue("idenfitier")) 
-			if err == nil{
-				log.Fatal("Impossible to define used tool")
+			i, err := strconv.Atoi(r.PostFormValue("identifier"))
+			log.Println(i) 
+			if err != nil{
+				log.Fatal("Can't define used tool")
 			}
     		log.Println("[+] Checking ...")
 			if i == 1 {
@@ -55,7 +56,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			log.Println("[-] Checking Finished")
 		} else {
 			res.Content = ""
-			res.Result = "Le fichier chargé était vide !"
+			res.Result = "Empty uploaded file"
 			res.Color = "red"
 		}
 			http.Redirect(w, r, "/verif", http.StatusSeeOther)

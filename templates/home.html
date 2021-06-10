@@ -35,10 +35,10 @@
                   <a class="nav-link" id="alert-tab" data-bs-toggle="tab" data-bs-target="#alert" type="button" role="tab" aria-controls="alert" aria-selected="true"> Alertmanagertool</a>
                 </li>
             </ul>
-
-            <form method="POST" action="/"> 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="prom" role="tabpanel" aria-labelledby="prom-tab">
+         
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="prom" role="tabpanel" aria-labelledby="prom-tab">
+                    <form method="POST" action="/"> 
                         <div class="form-floating">
                             <textarea class="form-control" name="config" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
                             <label for="textareaprom">Copiez le contenu de votre fichier Promtool</label>
@@ -46,22 +46,28 @@
                                 <input class="form-control formFile" type="file" oninput="displayFile(this)">
                             </div>
                             <input type="number" class="hiddeninput" name="identifier" value="1"/>
+                            <button type="submit" id="verifybtn" class="btn btn-primary">Vérifier la configuration</button>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="alert" role="tabpanel" aria-labelledby="alert-tab">
+                    </form>
+                </div>
+
+
+                <div class="tab-pane fade" id="alert" role="tabpanel" aria-labelledby="alert-tab">
+                    <form method="POST" action="/"> 
                         <div class="form-floating">
                             <textarea class="form-control" name="config" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
                             <label for="textareaalert">Copiez le contenu de votre fichier Alertmanagertool</label>
                             <div class="mb-3">
                                 <input class="form-control formFile" type="file" oninput="displayFile(this)">
                             </div>
-                        </div>
-                        <input type="number" class="hiddeninput" name="identifier" value="2"/>
-                    </div>
+                            <input type="number" class="hiddeninput" name="identifier" value="2"/>
+                            <button type="submit" id="verifybtn" class="btn btn-primary">Vérifier la configuration</button>
+                        </div>         
+                    </form>    
                 </div>
-                <button type="submit" id="verifybtn" class="btn btn-primary">Vérifier la configuration</button>
-            </form>
-
+            </div>
+                
+                            
         </div> 
     </body>
 </html> 
@@ -88,12 +94,6 @@
 <style>
     .hiddeninput{
         display:none;
-    }
-
-    .tabcontent {
-      display: none;
-      padding: 6px 12px;
-      border-top: none;
     }
 
     .form-control{
