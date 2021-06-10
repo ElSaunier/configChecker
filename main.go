@@ -14,6 +14,7 @@ import (
 type Verif struct {
 	Content string
 	Result string
+	Color string
 }
 
 var res Verif
@@ -47,14 +48,15 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			}
     		log.Println("[+] Checking ...")
 			if i == 1 {
-				res.Content, res.Result = cfg.ValidatePromtool()
+				res.Content, res.Result, res.Valid = cfg.ValidatePromtool()
 			} else {
-				res.Content, res.Result = cfg.ValidateAlertManager()
+				res.Content, res.Result, res.Valid = cfg.ValidateAlertManager()
 			}
 			log.Println("[-] Checking Finished")
 		} else {
 			res.Content = ""
-			res.Result = "Le fichier Upload était vide !"
+			res.Result = "Le fichier chargé était vide !"
+			res.Valid = "red"
 		}
 			http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
