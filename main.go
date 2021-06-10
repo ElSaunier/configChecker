@@ -40,9 +40,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request){
 func sendHandler(w http.ResponseWriter, r *http.Request){
 		var cfg ConfigFile
 		cfg.Content = r.PostFormValue("config")
-
-		log.Println(cfg.Content)
-		
+				
 		if cfg.Content != "" {
 			i, err := strconv.Atoi(r.PostFormValue("idenfitier")) 
 			if err == nil{
