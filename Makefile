@@ -11,7 +11,7 @@ install:
 	$(GO) $@ $<
 
 build: $(BIN)
-	$(GO) $@ $<
+	$(GO) $@
 	mkdir $(MOD) $(BIN)
 
 run: main.go
