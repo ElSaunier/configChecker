@@ -6,7 +6,8 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/bmizerany/pat"
+	//"github.com/bmizerany/pat"
+	"github.com/gorilla/pat"
 )
 
 type Verif struct {
@@ -74,7 +75,7 @@ func main() {
 	)
 	*/
 
-	mux.cleanPath("templates/")
+	//cleanPath("templates/")
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
