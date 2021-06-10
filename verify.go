@@ -71,9 +71,9 @@ func (config ConfigFile) ValidatePromtool() (string, string){
    	out, err := cmd.CombinedOutput()
     if err != nil {
     	fmt.Printf("cmd.Run() failed with %s\n", err)
-   	} else {
-		fmt.Printf("Combined out:\n%s\n", string(out))
-	}
+   	} 
+	fmt.Printf("Combined out:\n%s\n", string(out))
+	
    	
 	file.Close()
 	fmt.Println("[-] Checking finished")
@@ -101,12 +101,12 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 		}
 	
 		cmd := exec.Command("amtool","check-config",file.Name())
-		   out, err := cmd.CombinedOutput()
+		out, err := cmd.CombinedOutput()
 		if err != nil {
 			fmt.Printf("cmd.Run() failed with %s\n", err)
-		   } else {
-			fmt.Printf("Combined out:\n%s\n", string(out))
-		}
+		   }
+		fmt.Printf("Combined out:\n%s\n", string(out))
+		
 		   
 		file.Close()
 		fmt.Println("[-] Checking finished")
