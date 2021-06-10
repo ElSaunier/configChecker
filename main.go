@@ -74,8 +74,6 @@ func main() {
 		func(w http.ResponseWriter, r *http.Request) {},
 	)
 	*/
-
-	cleanPath("templates/")
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
