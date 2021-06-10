@@ -1,16 +1,18 @@
 GO = go 
 BIN = bin/
+MOD = configChecker
 
 all: build test install
 
 test: verity_test.go
 	$(GO) $@ $<
 
-install: main.go
+install:
 	$(GO) $@ $<
 
-build: main.go | $(BIN)
+build: $(BIN)
 	$(GO) $@ $<
+	mkdir $(MOD) $(BIN)
 
 run: main.go
 	$(GO) $@ $<
@@ -19,7 +21,5 @@ $(BIN):
 	mkdir -p $(BIN)
 
 clean: 
-	@echo "[-] Suppression des fichiers objets"
-	rm *.o
 	@echo "[-] Suppression de l'exécutable"
-	rm main
+	rm -r $(BIN)
