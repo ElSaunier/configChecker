@@ -48,15 +48,15 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			}
     		log.Println("[+] Checking ...")
 			if i == 1 {
-				res.Content, res.Result, res.Valid = cfg.ValidatePromtool()
+				res.Content, res.Result, res.Color = cfg.ValidatePromtool()
 			} else {
-				res.Content, res.Result, res.Valid = cfg.ValidateAlertManager()
+				res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
 			}
 			log.Println("[-] Checking Finished")
 		} else {
 			res.Content = ""
 			res.Result = "Le fichier chargé était vide !"
-			res.Valid = "red"
+			res.Color = "red"
 		}
 			http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
