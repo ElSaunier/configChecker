@@ -88,7 +88,7 @@
         let file = obj.files[0];
 
         const fileRegex = new RegExp('([a-zA-Z0-9\s_\\.\-\(\):])+.yml$')
-
+        console.log(fileRegex.test(file))
         if (fileRegex.test(file)) {
         readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
                              .catch(error => console.log(error));
