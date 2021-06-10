@@ -39,15 +39,18 @@ func homeHandler(w http.ResponseWriter, r *http.Request){
 func sendHandler(w http.ResponseWriter, r *http.Request){
 		var cfg ConfigFile
 		cfg.Content = r.PostFormValue("config")
+		log.Println(r.PostFormValue("identifier"))
 		i, err := strconv.Atoi(r.PostFormValue("idenfitier")) 
-		if err != nil{
+		if err == nil{
 			log.Fatal("Impossible to define used tool")
 		}
+    	log.Println("[+] Checking ...")
 		if i == 1 {
 			res.Content, res.Result = cfg.ValidatePromtool()
 		} else {
 			res.Content, res.Result = cfg.ValidateAlertManager()
 		}
+		log.Println("[-] Checking Finished")
 
 		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }

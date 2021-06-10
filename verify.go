@@ -55,9 +55,6 @@ func (config ConfigFile) ValidatePromtool() (string, string){
 		  target_label: node_name`
 */
 
-
-	fmt.Println("[+] Checking ...")
-
 	file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 	if errFile != nil {
 		log.Fatal("Cannot create File : ",errFile)
@@ -73,10 +70,7 @@ func (config ConfigFile) ValidatePromtool() (string, string){
     	fmt.Printf("cmd.Run() failed with %s\n", err)
    	} 
 	fmt.Printf("Combined out:\n%s\n", string(out))
-	
-   	
 	file.Close()
-	fmt.Println("[-] Checking finished")
 
 	return config.Content, string(out)
 }
@@ -87,10 +81,6 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 		cfg.Content = 
 	``
 	*/
-	
-	
-		fmt.Println("[+] Checking ...")
-	
 		file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 		if errFile != nil {
 			log.Fatal("Cannot create File : ",errFile)
@@ -106,10 +96,7 @@ func (config ConfigFile) ValidateAlertManager() (string, string){
 			fmt.Printf("cmd.Run() failed with %s\n", err)
 		   }
 		fmt.Printf("Combined out:\n%s\n", string(out))
-		
-		   
+				   
 		file.Close()
-		fmt.Println("[-] Checking finished")
-	
 		return config.Content, string(out)
 	}
