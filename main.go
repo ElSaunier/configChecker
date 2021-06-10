@@ -67,8 +67,8 @@ func main() {
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
 
-	r.Handle("/templates/",
-	http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))),
+	r.Handle("/bootstrap-5.0.1-dist/",
+	http.StripPrefix("/bootstrap-5.0.1-dist/", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist"))),
 	)
 
 	r.Path("/templates/").HandlerFunc(
