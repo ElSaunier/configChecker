@@ -1,4 +1,4 @@
-module contact-form.example.com
+module github.com/ElSaunier/configChecker
 
 go 1.13
 
