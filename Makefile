@@ -2,7 +2,7 @@ GO = go
 BIN = bin/
 MOD = configChecker
 
-all: build test install
+all: install test run
 
 test: verify_test.go
 	$(GO) $@ $<
@@ -14,8 +14,8 @@ build: $(BIN)
 	$(GO) $@
 	mv $(MOD) $(BIN)
 
-run: main.go
-	$(GO) $@ $<
+run: 
+	$(GO) $@ .
 
 $(BIN):
 	mkdir -p $(BIN)
