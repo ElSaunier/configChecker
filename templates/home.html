@@ -86,8 +86,19 @@
 
     function displayFile(obj){
         let file = obj.files[0];
+
+        const fileRegex = new RegExp('([a-zA-Z0-9\s_\\.\-\(\):])+.yml$')
+
+        if (fileRegex.test(file)) {
         readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
                              .catch(error => console.log(error));
+        } else {
+            let span = document.createElement("span")
+            span.className("font-weight-bold")
+            span.style.cssText = "color:red;"
+            let divCtn = document.createTextNode("Fichier invalide !")
+            this.nextSiblings.append(span)
+        }
     }  
 </script>
 
