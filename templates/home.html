@@ -2,14 +2,13 @@
 
 <html>
     <head>
-       
         <title>ConfigChecker</title>
         <meta name="author" content="Loïc Saunier">
         <meta name="keywords" content="Config, Prometheus, Promtool,Alertmanager,Alertmanagertool,checking,verify,yml">
         <meta name="description" content="Outil de vérification de configuration promtool et alertmanagertool.">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        
         <link rel="stylesheet" href="bootstrap-5.0.1-dist/css/bootstrap.min.css">
     </head>
 
@@ -43,6 +42,9 @@
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
                             <label for="textareaprom">Copiez le contenu de votre fichier Promtool</label>
+                            <div class="mb-3">
+                                <input class="form-control formFile" type="file" oninput="displayFile(this); return false;">
+                            </div>
                             <input type="number" class="hiddeninput" name="identifier" value="1"/>
                         </div>
                     </div>
@@ -50,17 +52,38 @@
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
                             <label for="textareaalert">Copiez le contenu de votre fichier Alertmanagertool</label>
+                            <div class="mb-3">
+                                <input class="form-control formFile" type="file" oninput="displayFile(this); return false;">
+                            </div>
                         </div>
                         <input type="number" class="hiddeninput" name="identifier" value="2"/>
                     </div>
                 </div>
                 <button type="submit" id="verifybtn" class="btn btn-primary">Vérifier la configuration</button>
             </form>
+
         </div> 
     </body>
 </html> 
 
 <script src="bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function readFileContent(file) {
+	    const reader = new FileReader()
+        return new Promise((resolve, reject) => {
+            reader.onload = event => resolve(event.target.result)
+            reader.onerror = error => reject(error)
+            reader.readAsText(file)
+        })
+    }
+
+    function displayFile(obj){
+        let file = obj.files[0];
+        readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
+                             .catch(error => console.log(error));
+    }  
+</script>
 
 <style>
     .hiddeninput{
@@ -92,6 +115,11 @@
     .navbar{
         background: linear-gradient(to right, #000000, #0095ff);
         color: white;
+    }
+
+    .formFile{
+        height: 1%;
+        width: 18%;
     }
     
 </style>
