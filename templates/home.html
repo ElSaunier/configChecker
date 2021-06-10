@@ -40,7 +40,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="prom" role="tabpanel" aria-labelledby="prom-tab">
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
+                            <textarea class="form-control" name="config" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
                             <label for="textareaprom">Copiez le contenu de votre fichier Promtool</label>
                             <div class="mb-3">
                                 <input class="form-control formFile" type="file" oninput="displayFile(this)">
@@ -50,10 +50,10 @@
                     </div>
                     <div class="tab-pane fade" id="alert" role="tabpanel" aria-labelledby="alert-tab">
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
+                            <textarea class="form-control" name="config" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
                             <label for="textareaalert">Copiez le contenu de votre fichier Alertmanagertool</label>
                             <div class="mb-3">
-                                <input class="form-control formFile" type="file" oninput="displayFile(this)/*; return false;*/">
+                                <input class="form-control formFile" type="file" oninput="displayFile(this)">
                             </div>
                         </div>
                         <input type="number" class="hiddeninput" name="identifier" value="2"/>
