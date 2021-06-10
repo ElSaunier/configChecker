@@ -4,7 +4,7 @@ MOD = configChecker
 
 all: build test install
 
-test: verity_test.go
+test: verify_test.go
 	$(GO) $@ $<
 
 install:
