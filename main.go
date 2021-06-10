@@ -63,9 +63,9 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandlerFunc("/",homeHandler).Methods("GET")
-	r.HandlerFunc("/",sendHandler).Methods("POST")
-	r.HandlerFunc("/",verifHandler).Methods("GET")
+	r.HandleFunc("/",homeHandler).Methods("GET")
+	r.HandleFunc("/",sendHandler).Methods("POST")
+	r.HandleFunc("/",verifHandler).Methods("GET")
 
 	r.Handle("/templates/",
 	http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))),
