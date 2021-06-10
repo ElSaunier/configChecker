@@ -27,7 +27,7 @@
 
             <div id="compare">
                 <span>
-                    <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareacontent" style="height:45em; width: 60em;" >{{.Content}}</textarea>
+                    <textarea class="form-control" id="textareacontent" style="height:45em; width: 60em;" >{{.Content}}</textarea>
                 </span>
 
                 <div class="col-md-3 col-sm-6" id="result">
@@ -40,11 +40,29 @@
                 </div>
             </div>
         
+            <button type="submit" id="savebtn" class="btn btn-primary" onclick="savingFile()">Sauvegarder la configuration</button>
         </div> 
     </body>
 </html> 
 
 <script src="bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function savingFile(){
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+
+        var file = new Blob([document.getElementById("textareacontent").value], {type : 'text/yml'});
+
+        var url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = "config.yml"
+        a.click()
+        window.URL.revokeObjectURL(url)
+    }
+</script>
+
 
 <style>
 
@@ -68,6 +86,10 @@
     #result{
         height: 20em;
         padding-left: 3.5%;
+    }
+
+    #savebtn{
+        margin: 1%;
     }
 
     .box{
