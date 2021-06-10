@@ -43,7 +43,7 @@
                             <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Promtool" id="textareaprom" style="height:45em"></textarea>
                             <label for="textareaprom">Copiez le contenu de votre fichier Promtool</label>
                             <div class="mb-3">
-                                <input class="form-control formFile" type="file" oninput="displayFile(this); return false;">
+                                <input class="form-control formFile" type="file" oninput="displayFile(this)">
                             </div>
                             <input type="number" class="hiddeninput" name="identifier" value="1"/>
                         </div>
@@ -53,7 +53,7 @@
                             <textarea class="form-control" placeholder="Copiez le contenu de votre fichier Alertmanagertool" id="textareaalert" style="height:45em"></textarea>
                             <label for="textareaalert">Copiez le contenu de votre fichier Alertmanagertool</label>
                             <div class="mb-3">
-                                <input class="form-control formFile" type="file" oninput="displayFile(this); return false;">
+                                <input class="form-control formFile" type="file" oninput="displayFile(this)/*; return false;*/">
                             </div>
                         </div>
                         <input type="number" class="hiddeninput" name="identifier" value="2"/>
