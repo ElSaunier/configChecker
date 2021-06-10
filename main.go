@@ -68,11 +68,11 @@ func main() {
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
 
 	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css",
-	http.StripPrefix("templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
+	http.StripPrefix("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/css/bootstrap.min.css"))),
 	)
 
 	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.bundle.min.js",
-	http.StripPrefix("templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
+	http.StripPrefix("templates/bootstrap-5.0.1-dist/css/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
 	)
 
 	r.Path("/obj/{id}").HandlerFunc(
