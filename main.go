@@ -71,7 +71,7 @@ func main() {
 	http.StripPrefix("/bootstrap-5.0.1-dist/", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist"))),
 	)
 
-	r.Path("/templates/").HandlerFunc(
+	r.Path("/obj/{id}").HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {},
 	)
 	
