@@ -7,7 +7,8 @@ import (
 	"strconv"
 
 	//"github.com/bmizerany/pat"
-	"github.com/gorilla/pat"
+	//"github.com/gorilla/pat"
+	"github.com/gorilla/mux"
 )
 
 type Verif struct {
@@ -60,20 +61,20 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 
 func main() {
 
-	mux := pat.New()
-	mux.Get("/",http.HandlerFunc(homeHandler))
-	mux.Post("/",http.HandlerFunc(sendHandler))
-	mux.Get("/verif",http.HandlerFunc(verifHandler))
+	r := mux.NewRouter()
 
-	/*
-	mux.Handle("/templates/",
+	r.HandlerFunc("/",homeHandler).Methods("GET")
+	r.HandlerFunc("/",sendHandler).Methods("POST")
+	r.HandlerFunc("/",verifHandler).Methods("GET")
+
+	r.Handle("/templates/",
 	http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))),
 	)
 
-	mux.Path("/templates/").HandlerFunc(
+	r.Path("/templates/").HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {},
 	)
-	*/
+	
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
