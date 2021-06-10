@@ -67,8 +67,12 @@ func main() {
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
 
-	r.Handle("/bootstrap-5.0.1-dist/",
-	http.StripPrefix("/bootstrap-5.0.1-dist/", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist"))),
+	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css",
+	http.StripPrefix("templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
+	)
+
+	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.bundle.min.js",
+	http.StripPrefix("templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
 	)
 
 	r.Path("/obj/{id}").HandlerFunc(
