@@ -64,6 +64,13 @@ func main() {
 	mux.Post("/",http.HandlerFunc(sendHandler))
 	mux.Get("/verif",http.HandlerFunc(verifHandler))
 
+	mux.Handle("/templates/",
+	http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))),
+	)
+
+	mux.Path("/templates/").HandlerFunc(
+		func(w http.ResponseWriter, r *http.Request) {},
+	)
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",mux)
