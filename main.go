@@ -65,7 +65,7 @@ func main() {
 
 	r.HandleFunc("/",homeHandler).Methods("GET")
 	r.HandleFunc("/",sendHandler).Methods("POST")
-	r.HandleFunc("/",verifHandler).Methods("GET")
+	r.HandleFunc("/verif",verifHandler).Methods("GET")
 
 	r.Handle("/templates/",
 	http.StripPrefix("/templates/", http.FileServer(http.Dir("./templates/"))),
@@ -77,7 +77,7 @@ func main() {
 	
 	
 	log.Println("Server Up and Running ...")
-	err := http.ListenAndServe("0.0.0.0:8181",mux)
+	err := http.ListenAndServe("0.0.0.0:8181",r)
 	
 	if err != nil {
 		log.Fatal(err)
