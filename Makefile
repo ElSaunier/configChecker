@@ -12,7 +12,7 @@ install:
 
 build: $(BIN)
 	$(GO) $@
-	mkdir $(MOD) $(BIN)
+	mv $(MOD) $(BIN)
 
 run: main.go
 	$(GO) $@ $<
