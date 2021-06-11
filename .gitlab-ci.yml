@@ -1,6 +1,5 @@
 # This file is a template, and might need editing before it works on your project.
 image: golang:latest
-image: losaunier/go-promtool-amtool:latest
 
 variables:
   # Please edit to your GitLab project
@@ -26,6 +25,7 @@ stages:
 
 format:
   stage: test
+  image: losaunier/go-promtool-amtool:latest
   script:
     - http_proxy= go fmt $(go list ./... | grep -v /vendor/)
     - go get $(go list ./... | grep -v /vendor/)
