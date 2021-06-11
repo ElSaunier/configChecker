@@ -12,7 +12,6 @@ type ConfigFile struct{
 }
 
 func (config ConfigFile) ValidatePromtool() (string, string, string){
-
 	color := "green"
 	file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 	if errFile != nil {
@@ -36,7 +35,6 @@ func (config ConfigFile) ValidatePromtool() (string, string, string){
 }
 
 func (config ConfigFile) ValidateAlertManager() (string, string, string){
-
 		color := "green"
 		file,errFile := os.OpenFile("data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 		if errFile != nil {
@@ -53,8 +51,8 @@ func (config ConfigFile) ValidateAlertManager() (string, string, string){
 			fmt.Printf("cmd.Run() failed with %s\n", err)
 			color = "red"
 		}
-		fmt.Printf("Combined out:\n%s\n", string(out))
-				   
+		fmt.Printf("Combined out:\n%s\n", string(out))		   
 		file.Close()
+
 		return config.Content, string(out), color
 	}

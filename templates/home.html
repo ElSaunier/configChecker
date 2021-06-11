@@ -16,13 +16,10 @@
         <nav class="navbar">
             <div class="container-fluid">
               <span class="navbar-brand mb-0 h1">ConfigChecker</span>
-              <span class="navbar-brand mb-0 h1"></span>
             </div>
-            
         </nav>
 
         <div id="maincontent">
-
             <h5>
                 Outil de vérification de vos configurations Promtool et Alertmanagertool
             </h5>
@@ -65,9 +62,7 @@
                         </div>         
                     </form>    
                 </div>
-            </div>
-                
-                            
+            </div>                      
         </div> 
     </body>
 </html> 
@@ -86,12 +81,12 @@
 
     function displayFile(obj){
         let file = obj.files[0];
-
         const fileRegex = new RegExp('([a-zA-Z0-9\s_\\.\\-\(\):])+.yml')
         
+        // To avoid shell injections
         if (fileRegex.test(file)) {
-        readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
-                             .catch(error => console.log(error));
+            readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
+                                .catch(error => console.log(error));
         } else {
             let span = document.createElement("span")
             span.className = "font-weight-bold"

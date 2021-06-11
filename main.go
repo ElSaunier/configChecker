@@ -6,8 +6,6 @@ import (
 	"log"
 	"strconv"
 
-	//"github.com/bmizerany/pat"
-	//"github.com/gorilla/pat"
 	"github.com/gorilla/mux"
 )
 
@@ -43,7 +41,6 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 				
 		if cfg.Content != "" {
 			i, err := strconv.Atoi(r.PostFormValue("identifier"))
-			log.Println(i) 
 			if err != nil{
 				log.Fatal("Can't define used tool")
 			}
@@ -59,15 +56,12 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			res.Result = "Empty uploaded file"
 			res.Color = "red"
 		}
-			http.Redirect(w, r, "/verif", http.StatusSeeOther)
+		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
 	createTemplate(w, "templates/verif.html", res)
 }
-
-
-
 
 func main() {
 
@@ -77,6 +71,7 @@ func main() {
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
 
+	/*
 	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css",
 	http.StripPrefix("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/css/bootstrap.min.css"))),
 	)
@@ -88,7 +83,7 @@ func main() {
 	r.Path("/obj/{id}").HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {},
 	)
-	
+	*/
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",r)
