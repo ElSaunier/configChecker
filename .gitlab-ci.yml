@@ -27,6 +27,8 @@ format:
     - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go fmt $(go list ./... | grep -v /vendor/)
     - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go get $(go list ./... | grep -v /vendor/)
     - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go test -race $(go list ./... | grep -v /vendor/)
+  tags:
+    - bayezid1
 
 compile:
   stage: build
@@ -35,3 +37,5 @@ compile:
   artifacts:
     paths:
       - mybinary
+  tags:
+    - bayezid1
