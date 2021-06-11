@@ -3,7 +3,9 @@ image: golang:latest
 
 variables:
   # Please edit to your GitLab project
-  REPO_NAME: gitlab.com/losaunier/configChecker
+  REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
+  http_proxy: http://proxyace2.prod.extelia.fr:8080
+  https_proxy: http://proxyace2.prod.extelia.fr:8080
 
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
@@ -24,9 +26,11 @@ stages:
 format:
   stage: test
   script:
-    - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go fmt $(go list ./... | grep -v /vendor/)
-    - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go vet $(go list ./... | grep -v /vendor/)
-    - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go test -race $(go list ./... | grep -v /vendor/)
+    - http_proxy= go fmt $(go list ./... | grep -v /vendor/)
+    - go get $(go list ./... | grep -v /vendor/)
+    - go test -race $(go list ./... | grep -v /vendor/)
+  tags:
+    - bayezid1
 
 compile:
   stage: build
@@ -35,3 +39,5 @@ compile:
   artifacts:
     paths:
       - mybinary
+  tags:
+    - bayezid1
