@@ -1,8 +1,14 @@
 # ConfigChecker
 
-[![Generic badge](https://img.shields.io/badge/<SUBJECT>-<STATUS>-<COLOR>.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/<Project>-<build>-<COLOR>.svg)](https://shields.io/)
 
 [![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/gomods/athens.svg)](https://github.com/gomods/athens)
+
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](./LICENSE)
+
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/issues/)
+
+
 
 
 ## What is it ?
