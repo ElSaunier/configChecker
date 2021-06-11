@@ -1,5 +1,8 @@
 # ConfigChecker
 
+[![Generic badge](https://img.shields.io/badge/<SUBJECT>-<STATUS>-<COLOR>.svg)](https://shields.io/)
+
+
 ## What is it ?
 
 This tool offers to prometheus and altermanager users the possibility to verify their configuration files.
