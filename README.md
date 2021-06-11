@@ -2,8 +2,7 @@
 
 [![Generic badge](https://img.shields.io/badge/Project-build-<COLOR>.svg)](https://shields.io/)
 [![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/gomods/athens.svg)](https://github.com/gomods/athens)
-
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](./LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## What is it ?
 
