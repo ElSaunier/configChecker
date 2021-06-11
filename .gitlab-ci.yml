@@ -25,9 +25,8 @@ format:
   stage: test
   script:
     - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go fmt $(go list ./... | grep -v /vendor/)
-    - echo "I'm here"
     - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go vet $(go list ./... | grep -v /vendor/)
-    - go test -race $(go list ./... | grep -v /vendor/)
+    - http_proxy=http://vipproxy2.prod.extelia.fr:8080 go test -race $(go list ./... | grep -v /vendor/)
 
 compile:
   stage: build
