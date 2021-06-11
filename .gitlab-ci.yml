@@ -4,8 +4,6 @@ image: golang:latest
 variables:
   # Please edit to your GitLab project
   REPO_NAME: gitlab.com/losaunier/configChecker
-  HTTP_PROXY: "http://vipproxy2.prod.extelia.fr:8080"
-  HTTPS_PROXY: "http://vipproxy2.prod.extelia.fr:8080"
 
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
@@ -27,7 +25,7 @@ format:
   stage: test
   script:
     - go fmt $(go list ./... | grep -v /vendor/)
-    - HTTPS_PROXY go vet $(go list ./... | grep -v /vendor/)
+    - http://vipproxy2.prod.extelia.fr:8080 go vet $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
 
 compile:
