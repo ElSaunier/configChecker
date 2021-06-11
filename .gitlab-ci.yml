@@ -1,5 +1,6 @@
 # This file is a template, and might need editing before it works on your project.
 image: golang:latest
+image: docker
 
 variables:
   # Please edit to your GitLab project
@@ -17,6 +18,7 @@ before_script:
   - mkdir -p $GOPATH/src/$(dirname $REPO_NAME)
   - ln -svf $CI_PROJECT_DIR $GOPATH/src/$REPO_NAME
   - cd $GOPATH/src/$REPO_NAME
+  - docker build -t losaunier/go-promtool-amtool
 
 stages:
   - test
