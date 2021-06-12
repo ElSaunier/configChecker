@@ -64,26 +64,11 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func main() {
-
 	r := mux.NewRouter()
 
 	r.HandleFunc("/",homeHandler).Methods("GET")
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
-
-	/*
-	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css",
-	http.StripPrefix("templates/bootstrap-5.0.1-dist/css/bootstrap.min.css", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/css/bootstrap.min.css"))),
-	)
-
-	r.Handle("templates/bootstrap-5.0.1-dist/css/bootstrap.bundle.min.js",
-	http.StripPrefix("templates/bootstrap-5.0.1-dist/css/bootstrap.bundle.min.js", http.FileServer(http.Dir("./templates/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"))),
-	)
-
-	r.Path("/obj/{id}").HandlerFunc(
-		func(w http.ResponseWriter, r *http.Request) {},
-	)
-	*/
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",r)
