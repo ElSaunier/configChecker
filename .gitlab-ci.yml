@@ -17,7 +17,6 @@ before_script:
   - mkdir -p $GOPATH/src/$(dirname $REPO_NAME)
   - ln -svf $CI_PROJECT_DIR $GOPATH/src/$REPO_NAME
   - cd $GOPATH/src/$REPO_NAME
-  - docker build -t losaunier/go-promtool-amtool
 
 stages:
   - test
@@ -26,7 +25,7 @@ stages:
 
 format:
   stage: test
-  image: losaunier/go-promtool-amtool:latest
+  image: elsaunier/go-promtool-amtool:latest
   script:
     - http_proxy= go fmt $(go list ./... | grep -v /vendor/)
     - go get $(go list ./... | grep -v /vendor/)
