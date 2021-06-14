@@ -26,7 +26,13 @@
 
             <div id="compare">
                 <span>
-                    <textarea class="form-control" id="textareacontent" style="border:1px solid {{.Color}}">{{.Content}}</textarea>
+                    <form method="POST" action="/">
+                        <textarea class="form-control" id="textareacontent" name="config" style="border:1px solid {{.Color}}">{{.Content}}</textarea>
+                        <input type="number" name="identifier" value="{{.Identifier}}" style="display: none;"/>
+                        <button type="submit" class="btn btn-primary myBtn">Vérifier</button>
+                        <button type="button" class="btn btn-primary myBtn" onclick="savingFile()">Sauvegarder la configuration</button>
+                    </form>
+                    
                 </span>
 
                 <div class="col-md-3 col-sm-6" id="result">
@@ -38,7 +44,6 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="savebtn" class="btn btn-primary" onclick="savingFile()">Sauvegarder la configuration</button>
         </div> 
     </body>
 </html> 
@@ -85,7 +90,7 @@
         padding-left: 3.5%;
     }
 
-    #savebtn{
+    .myBtn{
         margin: 1%;
     }
 

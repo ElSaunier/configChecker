@@ -13,6 +13,7 @@ type Verif struct {
 	Content string
 	Result string
 	Color string
+	Identifier int
 }
 
 var res Verif
@@ -44,6 +45,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			if err != nil{
 				log.Fatal("Can't define used tool")
 			}
+			res.Identifier = i;
     		log.Println("[+] Checking ...")
 			if i == 1 {
 				res.Content, res.Result, res.Color = cfg.ValidatePromtool()
@@ -55,6 +57,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			res.Content = ""
 			res.Result = "Empty uploaded file"
 			res.Color = "red"
+			res.Identifier = 0
 		}
 		http.Redirect(w, r, "/verif", http.StatusSeeOther)
 }
@@ -69,6 +72,7 @@ func main() {
 	r.HandleFunc("/",homeHandler).Methods("GET")
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
+	r.HandleFunc("/verif",sendHandler).Methods("POST")
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",r)
