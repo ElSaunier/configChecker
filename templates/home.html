@@ -84,16 +84,24 @@
         const fileRegex = new RegExp('([a-zA-Z0-9\s_\\.\\-\(\):])+.yml')
         
         // To avoid shell injections
-        if (fileRegex.test(file)) {
+        if (fileRegex.test(file.name)) {
             readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
                                 .catch(error => console.log(error));
         } else {
-            let span = document.createElement("span")
-            span.className = "font-weight-bold"
-            span.style.cssText = "padding-left:0.5%;color:red;"
-            let divCtn = document.createTextNode("Fichier invalide !")
-            span.appendChild(divCtn)
-            obj.parentElement.appendChild(span)
+            let elem = document.getElementById("errMsg");
+            if (elem == undefined) {
+                let span = document.createElement("span")
+                span.className = "font-weight-bold fade"
+                span.id = "errMsg"
+                span.style.cssText = "padding-left:0.5%;color:red;"
+                let divCtn = document.createTextNode("Fichier invalide !")
+                span.appendChild(divCtn)
+                obj.parentElement.appendChild(span)
+            } else { 
+                elem.style.display = "none"
+                elem.style.display = "block"
+            }
+
         }
     }  
 </script>
