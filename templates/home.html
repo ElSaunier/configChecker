@@ -83,23 +83,26 @@
         obj.parentElement.parentElement.firstElementChild.value = ""
         let file = obj.files[0];
         const fileRegex = new RegExp('([a-zA-Z0-9\s_\\.\\-\(\):])+.yml')
-        
+        let elem = document.getElementById("errMsg")
+
         // To avoid shell injections
         if (fileRegex.test(file.name)) {
-            console.log("Here")
+            if (elem != undefined)
+                elem.style.display = "none"
+
             readFileContent(file).then(content => obj.parentElement.parentElement.firstElementChild.value = content)
                                 .catch(error => console.log(error));
         } else {
-            let elem = document.getElementById("errMsg");
             if (elem == undefined) {
                 let span = document.createElement("span")
-                span.className = "font-weight-bold fade"
+                span.className = "font-weight-bold"
                 span.id = "errMsg"
                 span.style.cssText = "padding-left:0.5%;color:red;"
                 let divCtn = document.createTextNode("Fichier invalide !")
                 span.appendChild(divCtn)
                 obj.parentElement.appendChild(span)
             } else { 
+                // To avoid text to appear twice or more
                 elem.style.display = "none"
                 elem.style.display = "block"
             }
