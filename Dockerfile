@@ -1,23 +1,17 @@
-ARG OS="linux"
-FROM docker:latest
-
 MAINTAINER Loïc Saunier
 
-RUN mkdir -p /configchecker
-WORKDIR /configchecker
+FROM elsaunier/go-promtool-amtool:latest as builder
 
-COPY LICENSE LICENSE/
-COPY README ./
-COPY testdata/ testdata/
-COPY templates/ templates/
-COPY main.go ./
-COPY verify_test.go ./
-COPY verify.go ./
-COPY Makefile ./
-COPY img/ img/
-COPY data/ data/
+RUN go build
+
+FROM golang:1.16 as app
+
+COPY --from=builder /usr/bin/promtool /usr/bin/promtool 
+COPY --from=builder /usr/bin/amtool /usr/bin/amtool
+COPY --from=builder /configChecker /usr/bin/configChecker
 
 EXPOSE 8181
-VOLUME ["/configchecker"]
+VOLUME ["/usr/bin"]
 
-ENTRYPOINT ["make"]
+WORKDIR /usr/bin
+ENTRYPOINT ["./configChecker"]
