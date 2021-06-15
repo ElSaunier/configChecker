@@ -1,6 +1,6 @@
-MAINTAINER Loïc Saunier
-
 FROM elsaunier/go-promtool-amtool:latest as builder
+
+MAINTAINER Loïc Saunier
 
 ADD verify.go .
 ADD main.go .
