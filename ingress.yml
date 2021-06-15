@@ -6,20 +6,20 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: 
-     http:
-       paths:
+  - host: configchecker.k8s.svc.docaposte.cloud 
+    http:
+      paths:
        - path: /
          pathType: Prefix
          backend:
            service:
-             name: configchecker-svc
+             name: configcheckerapp-svc
              port:
                number: 30000
        - path: /verif
          pathType: Prefix
          backend:
            service:
-             name: configchecker-svc
+             name: configcheckerapp-svc
              port:
                number: 30000
