@@ -5,6 +5,7 @@ MAINTAINER Loïc Saunier
 ADD verify.go .
 ADD main.go .
 ADD /templates/ .
+ADD go.mod .
 
 RUN go build
 
