@@ -1,19 +1,29 @@
-kind: Ingress
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: configchecker-ingress
-  namespace: production
-
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '200'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '200'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '200'
+    cert-manager.io/cluster-issuer: lets-encrypt-prod
 spec:
   rules:
     - host: configchecker.k8s.svc.docaposte.cloud
-      http: 
+      http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: configchecker-svc
-              servicePort: 30000
+              service:
+                name: configchecker-svc
+                port:
+                  number: 30000
+
           - path: /verif
+            pathType: Prefix
             backend:
-              serviceName: configchecker-svc
-              servicePort: 30000
+              service:
+                name: configchecker-svc
+                port:
+                  number: 30000
