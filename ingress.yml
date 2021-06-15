@@ -6,8 +6,8 @@ metadata:
 
 spec:
   rules:
-    - host: example.net
-      http: *.configchecker.k8s.svc.docaposte.cloud
+    - host: configchecker.k8s.svc.docaposte.cloud
+      http: 
         paths:
           - path: /
             backend:
