@@ -2,9 +2,13 @@ MAINTAINER Loïc Saunier
 
 FROM elsaunier/go-promtool-amtool:latest as builder
 
+ADD verify.go .
+ADD main.go .
+ADD /templates/ .
+
 RUN go build
 
-FROM golang:1.16 as app
+FROM scratch as app
 
 COPY --from=builder /usr/bin/promtool /usr/bin/promtool 
 COPY --from=builder /usr/bin/amtool /usr/bin/amtool
