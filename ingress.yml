@@ -1,29 +1,19 @@
---- 
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata: 
-  name: rewrite-slash
-spec: 
-  replacePath: 
-    path: /
----
-apiVersion: extensions/v1beta1
 kind: Ingress
+apiVersion: extensions/v1beta1
 metadata:
   name: configchecker-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik              
-    traefik.ingress.kubernetes.io/router.middlewares: default-rewrite-slash@kubernetescrd
+  namespace: production
+
 spec:
   rules:
-  - host: *.configchecker.k8s.svc.docaposte.cloud
-    http: 
-      paths:
-      - path: /
-        backend:
-          serviceName: configchecker-svc
-          servicePort: 30000
-      - path: /verif
-        backend:
-          serviceName: configchecker-svc
-          servicePort: 30000
+    - host: example.net
+      http: *.configchecker.k8s.svc.docaposte.cloud
+        paths:
+          - path: /
+            backend:
+              serviceName: configchecker-svc
+              servicePort: 30000
+          - path: /verif
+            backend:
+              serviceName: configchecker-svc
+              servicePort: 30000
