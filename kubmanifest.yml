@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: configChecker-app
+  namespace:  
+
+spec:
+ selector:
+  matchLabels:
+    app: configChecker
+ replicas: 1
+ templates:
+  metadata:
+   labels:
+    app: configChecker
+  spec:
+   container:
+   - name: configChecker
+     image: elsaunier/configChecker:latest
+     ports:
+    - containerPort: 8181
+---

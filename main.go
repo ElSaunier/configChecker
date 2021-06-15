@@ -33,7 +33,7 @@ func createTemplate(w http.ResponseWriter, filename string, data interface{}) {
   }  
 
 func homeHandler(w http.ResponseWriter, r *http.Request){
-	createTemplate(w, "templates/home.html", nil)
+	createTemplate(w, "/app/templates/home.html", nil)
 }
 
 func sendHandler(w http.ResponseWriter, r *http.Request){
@@ -63,7 +63,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func verifHandler(w http.ResponseWriter, r *http.Request){
-	createTemplate(w, "templates/verif.html", res)
+	createTemplate(w, "/app/templates/verif.html", res)
 }
 
 func main() {

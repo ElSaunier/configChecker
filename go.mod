@@ -1,4 +1,4 @@
-module github.com/ElSaunier/configChecker
+module outils.docapost.tech/gitlab/losaunier/configchecker
 
 go 1.13
 
