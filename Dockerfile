@@ -1,4 +1,4 @@
-FROM elsaunier/go-promtool-amtool:latest as builder
+FROM goland:1.16 as builder
 
 MAINTAINER Loïc Saunier
 
