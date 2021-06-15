@@ -14,7 +14,7 @@ spec:
   spec:
    containers:
    - name: configcheckerapp
-     image: elsaunier/configChecker:latest
+     image: elsaunier/configchecker:latest
      ports:
      - containerPort: 8181
 
