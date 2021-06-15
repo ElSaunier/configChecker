@@ -6,6 +6,8 @@ RUN mkdir -p configChecker
 COPY . /configChecker
 WORKDIR /configChecker
 
+RUN go build -o /configChecker/build
+
 FROM ubuntu:20.04 as app
 
 COPY --from=builder /usr/bin/promtool /usr/bin/promtool 
