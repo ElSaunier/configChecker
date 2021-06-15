@@ -1,22 +1,35 @@
-apiVersion: v1
-kind: pod
+apiVersion: apps/v1
+kind: Deployement
 metadata:
-  name: configChecker-app
-  namespace:  
-
+  name: configCheckerapp
 spec:
+ replicas: 1
  selector:
   matchLabels:
-    app: configChecker
- replicas: 1
- templates:
+    app: configCheckerapp
+ template:
   metadata:
    labels:
-    app: configChecker
+    app: configCheckerapp
   spec:
-   container:
-   - name: configChecker
+   containers:
+   - name: configCheckerapp
      image: elsaunier/configChecker:latest
      ports:
     - containerPort: 8181
+
 ---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: configCheckerapp-svc
+  labels:
+    app: configCheckerapp
+spec:
+  type: NodePort
+  ports:
+  - port: 8181
+    nodePort: 30000
+  selector:
+    app: configCheckerapp
