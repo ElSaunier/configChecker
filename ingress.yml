@@ -8,7 +8,7 @@ metadata:
 spec:
   tls:
   - hosts:
-      - https-configchecker.k8s.svc.docaposte.cloud
+      - configchecker.k8s.svc.docaposte.cloud
     secretName: secret-tls   
   rules:
   - host: configchecker.k8s.svc.docaposte.cloud 
