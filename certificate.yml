@@ -11,6 +11,9 @@ spec:
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
       name: letsencrypt-staging
+      # Annotations CLusterIssuers certmanager
+      # HackMe challenges
+      # ssl redirects
     # Enable the HTTP-01 challenge provider
     solvers:
     - http01:
