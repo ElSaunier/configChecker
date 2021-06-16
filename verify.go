@@ -13,7 +13,7 @@ type ConfigFile struct{
 
 func (config ConfigFile) ValidatePromtool() (string, string, string){
 	color := "green"
-	file,errFile := os.OpenFile("/data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
+	file,errFile := os.OpenFile("/app/data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 	if errFile != nil {
 		log.Fatal("Cannot open File : ",errFile)
 	}
@@ -36,7 +36,7 @@ func (config ConfigFile) ValidatePromtool() (string, string, string){
 
 func (config ConfigFile) ValidateAlertManager() (string, string, string){
 		color := "green"
-		file,errFile := os.OpenFile("/data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
+		file,errFile := os.OpenFile("/app/data/verif.yml",os.O_RDWR|os.O_TRUNC,0666)
 		if errFile != nil {
 			log.Fatal("Cannot open File : ",errFile)
 		}
