@@ -4,6 +4,8 @@ metadata:
   name: my-certificate
 spec:
   secretName: my-certificate-secret
+  dnsName:
+  - configchecker.k8s.svc.docaposte.cloud/
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
