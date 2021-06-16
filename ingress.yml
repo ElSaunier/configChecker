@@ -4,6 +4,7 @@ metadata:
   name: minimal-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/issue-temporary-certificate: 'true'
 spec:
   rules:
   - host: configchecker.k8s.svc.docaposte.cloud 
@@ -15,11 +16,4 @@ spec:
            service:
              name: configcheckerapp-svc
              port:
-               number: 30000
-       - path: /verif
-         pathType: Prefix
-         backend:
-           service:
-             name: configcheckerapp-svc
-             port:
-               number: 30000
+               number: 8181
