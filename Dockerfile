@@ -15,6 +15,7 @@ COPY --from=builder /usr/bin/amtool /usr/bin/amtool
 RUN mkdir -p app/
 COPY --from=builder /configChecker/build /app/configChecker
 COPY --from=builder /configChecker/templates /app/templates
+COPY --from=builder /configChecker/data /app/data
 
 EXPOSE 8181
 
