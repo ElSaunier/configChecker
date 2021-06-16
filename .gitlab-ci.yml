@@ -58,3 +58,5 @@ deploy:
   script:
     - docker build -t $image
     - docker push $image
+  after_script:
+    - docker logout
