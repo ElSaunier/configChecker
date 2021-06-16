@@ -4,7 +4,6 @@ metadata:
   name: configchecker-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/issue-temporary-certificate: 'false'
 spec:
   tls:
   - hosts:
