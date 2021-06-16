@@ -5,7 +5,6 @@ data:
 kind: Secret
 metadata:
   name: secret-tls
-  namespace: default
 type: kubernetes.io/tls
 ---
 apiVersion: networking.k8s.io/v1
@@ -24,10 +23,10 @@ spec:
   - host: configchecker.k8s.svc.docaposte.cloud 
     http:
       paths:
-       - path: /
-         pathType: Prefix
-         backend:
-           service:
-             name: configcheckerapp-svc
-             port:
-               number: 8181
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: configcheckerapp-svc
+            port:
+              number: 8181
