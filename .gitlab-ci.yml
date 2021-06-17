@@ -5,6 +5,8 @@ variables:
   # Please edit to your GitLab project
   REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
   img: elsaunier/configchecker
+  DOCKER_HOST: tcp://docker:2375
+
 
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
