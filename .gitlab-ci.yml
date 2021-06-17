@@ -6,6 +6,9 @@ variables:
   REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
   img: elsaunier/configchecker
   DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
 
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
@@ -52,9 +55,9 @@ compile:
 
 deploy:
   stage: deploy
-  image: docker:18.09
+  image:docker:19.03.12
   services:
-  - docker:18.09-dind
+  - docker:19.03.12-dind
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
