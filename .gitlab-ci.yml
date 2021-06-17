@@ -57,7 +57,7 @@ deploy:
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
-    - docker build -t $img
+    - docker build -t $img .
     - docker push $img
   after_script:
     - docker logout
