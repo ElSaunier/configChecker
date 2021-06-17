@@ -7,7 +7,6 @@ variables:
   img: elsaunier/configchecker
   DOCKER_HOST: tcp://localhost:2375
 
-
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
 # is gitlab.com, and that your repository is namespace/project, and
@@ -18,6 +17,7 @@ before_script:
   - mkdir -p $GOPATH/src/$(dirname $REPO_NAME)
   - ln -svf $CI_PROJECT_DIR $GOPATH/src/$REPO_NAME
   - cd $GOPATH/src/$REPO_NAME
+  - set  gitlab-runner.runners.privileged=true
 
 stages:
   - test
