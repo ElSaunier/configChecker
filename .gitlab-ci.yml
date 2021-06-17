@@ -6,9 +6,6 @@ variables:
   REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
   img: elsaunier/configchecker
 
-services:
-  - docker:dind
-
 # The problem is that to be able to use go get, one needs to put
 # the repository in the $GOPATH. So for example if your gitlab domain
 # is gitlab.com, and that your repository is namespace/project, and
@@ -55,13 +52,8 @@ compile:
 deploy:
   stage: deploy
   image: docker:latest
-  only:
-    refs:
-      - master
-    changes:
-      - .gitlab-ci.yml
-      - Dockerfile
-      - main.go
+  services:
+  - docker:dind
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
