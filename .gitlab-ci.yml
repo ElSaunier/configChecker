@@ -57,6 +57,13 @@ compile:
 deploy:
   stage: deploy
   image: docker:latest
+  only:
+    refs:
+      - master
+    changes:
+      - .gitlab-ci.yml
+      - Dockerfile
+      - main.go
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
