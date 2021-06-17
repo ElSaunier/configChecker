@@ -4,8 +4,6 @@ image: golang:latest
 variables:
   # Please edit to your GitLab project
   REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
-  http_proxy: http://proxyace2.prod.extelia.fr:8080
-  https_proxy: http://proxyace2.prod.extelia.fr:8080
   img: elsaunier/configchecker
 
 services:
@@ -31,11 +29,11 @@ format:
   stage: test
   image: elsaunier/go-promtool-amtool:latest
   script:
-    - http_proxy= go fmt $(go list ./... | grep -v /vendor/)
+    - go fmt $(go list ./... | grep -v /vendor/)
     - go get $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
   tags:
-    - bayezid1
+    - cfgchecker
 
 compile:
   stage: build
@@ -52,7 +50,7 @@ compile:
     paths:
       - mybinary
   tags:
-    - bayezid1
+    - cfgchecker
 
 deploy:
   stage: deploy
@@ -71,3 +69,5 @@ deploy:
     - docker push $img
   after_script:
     - docker logout
+  tags:
+    - cfgchecker
