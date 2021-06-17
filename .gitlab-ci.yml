@@ -33,7 +33,7 @@ format:
     - go get $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
   tags:
-    - cfgchecker
+    - cfgcheck-gitlab-runner-784ddcf867-26mf5
 
 compile:
   stage: build
@@ -50,7 +50,7 @@ compile:
     paths:
       - mybinary
   tags:
-    - cfgchecker
+    - cfgcheck-gitlab-runner-784ddcf867-26mf5
 
 deploy:
   stage: deploy
@@ -70,4 +70,4 @@ deploy:
   after_script:
     - docker logout
   tags:
-    - cfgchecker
+    - cfgcheck-gitlab-runner-784ddcf867-26mf5
