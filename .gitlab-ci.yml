@@ -54,6 +54,8 @@ compile:
 deploy:
   stage: deploy
   image: docker:latest
+  services:
+    - docker:dind
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
