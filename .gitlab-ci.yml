@@ -55,7 +55,7 @@ compile:
 
 deploy:
   stage: deploy
-  image:docker:19.03.12
+  image: docker:19.03.12
   services:
   - docker:19.03.12-dind
   before_script:
