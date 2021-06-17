@@ -64,12 +64,12 @@ deploy:
       - main.go
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - docker start
+    - systemctl start docker
   script:
     - docker build -t $img .
     - docker push $img
   after_script:
     - docker logout
-    - docker stop
+    - systemctl stop docker
   tags:
     - configChecker
