@@ -11,6 +11,10 @@ Indeed this web application permits to (upload/write) your configuration into th
 
 ## First steps
 
+### Use it directly on cloud
+
+If you're a Docaposte member, and acredit to use this application. You should be able to access it by using this url : http://configchecker.k8s.svc.docaposte.cloud/
+
 ### Run
 
 In order to use this application, you'll have to build the application using the *Makefile*.
