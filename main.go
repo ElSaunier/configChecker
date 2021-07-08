@@ -66,6 +66,58 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 	createTemplate(w, "/app/templates/verif.html", res)
 }
 
+func apiHandler(w http.ResponseWriter, r *http.Request){
+	var cfg ConfigFile
+
+	// Taille de 10MB maximum
+    r.ParseMultipartForm(10 << 20)
+
+    file, handler, err := r.FormFile("config")
+    if err != nil {
+        log.Println("Error Retrieving the File")
+        log.Println(err)
+        return
+    }
+    defer file.Close()
+
+    fileBytes, err2 := ioutil.ReadAll(file)
+    if err2 != nil {
+        log.Println(err2)
+    }
+
+	fileString := string(fileBytes)
+	cfg.Content = fileString
+
+
+	if cfg.Content != "" {
+		i, err := strconv.Atoi(r.PostFormValue("identifier"))
+		if err != nil{
+			log.Fatal("Can't define used tool")
+		}
+		res.Identifier = i;
+		log.Println("[+] Checking ...")
+		if i == 1 {
+			res.Content, res.Result, res.Color = cfg.ValidatePromtool()
+		} else {
+			res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
+		}
+		log.Println("[-] Checking Finished")
+	} else {
+		res.Content = ""
+		res.Result = "Empty uploaded file"
+		res.Color = "red"
+		res.Identifier = 0
+	}
+	
+	if res.Color == "red" {
+		w.WriteHeader(http.StatusNotAcceptable)
+	} else {
+		w.WriteHeader(http.StatusOK)
+	}
+	w.Write([]bytes(res.Result))
+
+}
+
 func main() {
 	r := mux.NewRouter()
 
@@ -73,6 +125,7 @@ func main() {
 	r.HandleFunc("/",sendHandler).Methods("POST")
 	r.HandleFunc("/verif",verifHandler).Methods("GET")
 	r.HandleFunc("/verif",sendHandler).Methods("POST")
+	r.HandleFunc("/api",apiHandler).Methods("POST")
 	
 	log.Println("Server Up and Running ...")
 	err := http.ListenAndServe("0.0.0.0:8181",r)
