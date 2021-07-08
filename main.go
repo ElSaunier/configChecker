@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"log"
 	"strconv"
+	"io/ioutil"
 
 	"github.com/gorilla/mux"
 )
@@ -114,7 +115,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	} else {
 		w.WriteHeader(http.StatusOK)
 	}
-	w.Write([]bytes(res.Result))
+	w.Write([]byte(res.Result))
 
 }
 
