@@ -73,7 +73,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	// Taille de 10MB maximum
     r.ParseMultipartForm(10 << 20)
 
-    file, handler, err := r.FormFile("config")
+    file, _, err := r.FormFile("config")
     if err != nil {
         log.Println("Error Retrieving the File")
         log.Println(err)
