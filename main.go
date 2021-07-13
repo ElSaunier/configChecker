@@ -77,16 +77,16 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	// Gestion des paramètres vides
 	if r.PostFormValue("identifier") == "" {
 		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
+		fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool)")
 		return
 	}
 
     file, _, err := r.FormFile("config")
-	/*if err == http.ErrMissingFile {
+	if err == http.ErrMissingFile {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintf(w, "Missing config file")
 		return
-	}*/
+	}
 	
     if err != nil {
         log.Println("Error Retrieving the File")
@@ -119,6 +119,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 		}
 		log.Println("[-] Checking Finished")
 	} else {
+		fmt.Println("Here")
 		res.Content = ""
 		res.Result = "Empty uploaded file"
 		res.Color = "red"
@@ -126,7 +127,13 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	}
 	
 	if res.Color == "red" {
-		w.WriteHeader(http.StatusNotAcceptable)
+		if res.Content == "" {
+			w.WriteHeader(http.StatusNotAcceptable)
+		} else {
+			fmt.Fprintf(w, "Missing config file")
+			return 
+		}
+		
 	} else {
 		w.WriteHeader(http.StatusOK)
 	}
