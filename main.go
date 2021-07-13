@@ -86,12 +86,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	}
 
     file, _, err := r.FormFile("config")
-	if err == http.ErrMissingFile {
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "Missing config file")
-		return
-	}
-	
     if err != nil {
         log.Println("Error Retrieving the File")
         log.Println(err)
@@ -106,7 +100,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 
 	fileString := string(fileBytes)
 	cfg.Content = fileString
-
 
 	if cfg.Content != "" {
 		i, err := strconv.Atoi(r.PostFormValue("identifier"))
