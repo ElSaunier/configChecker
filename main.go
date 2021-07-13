@@ -87,8 +87,8 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 
     file, _, err := r.FormFile("config")
     if err != nil {
-        log.Println("Error Retrieving the File")
-        log.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+        fmt.Fprintf(w, "Error retrieving the file")
         return
     }
     defer file.Close()
