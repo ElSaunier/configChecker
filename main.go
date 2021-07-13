@@ -70,9 +70,6 @@ func verifHandler(w http.ResponseWriter, r *http.Request){
 func apiHandler(w http.ResponseWriter, r *http.Request){
 	var cfg ConfigFile
 
-	createTemplate(w, "/app/templates/home.html", nil)
-	log.Println("Here")
-
 	// Taille de 10MB maximum
     r.ParseMultipartForm(10 << 20)
 
