@@ -54,7 +54,7 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 			case 2:
 				res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
 			default:
-				res.Result = "Empty uploaded file"
+				res.Result = "Cannot perform validation"
 				res.Color = "red"
 				res.Content = cfg.Content
 			} 
@@ -122,7 +122,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 		case 2:
 			res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
 		default:
-			res.Result = "Empty uploaded file"
+			res.Result = "Cannot perform validation"
 			res.Color = "red"
 			res.Content = cfg.Content
 		} 
