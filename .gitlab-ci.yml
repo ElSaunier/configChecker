@@ -33,6 +33,7 @@ compile:
   only:
     refs:
       - master
+      - APIsation
     changes:
       - .gitlab-ci.yml
       - Dockerfile
