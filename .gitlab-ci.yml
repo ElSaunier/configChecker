@@ -54,6 +54,7 @@ deploy:
   services:
   - docker:19.03.12-dind
   before_script:
+    - echo "$DOCKER_USER $DOCKER_PASSWORD"
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
     - docker build -t $img .
