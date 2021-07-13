@@ -136,13 +136,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	}
 	
 	if res.Color == "red" {
-		if res.Content == "" {
-			w.WriteHeader(http.StatusNotAcceptable)
-		} else {
-			fmt.Fprintf(w, "Missing config file")
-			return 
-		}
-		
+		w.WriteHeader(http.StatusNotAcceptable)	
 	} else {
 		w.WriteHeader(http.StatusOK)
 	}
