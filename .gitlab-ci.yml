@@ -33,10 +33,13 @@ compile:
   only:
     refs:
       - master
+      - APIsation
     changes:
       - .gitlab-ci.yml
       - Dockerfile
       - main.go
+      - verify.go
+      - verify_test.go
   script:
     - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/mybinary
   artifacts:
