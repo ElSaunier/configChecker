@@ -6,6 +6,7 @@ import (
 	"log"
 	"strconv"
 	"io/ioutil"
+	"fmt"
 
 	"github.com/gorilla/mux"
 )
@@ -74,6 +75,12 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
     r.ParseMultipartForm(10 << 20)
 
     file, _, err := r.FormFile("config")
+	if file == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "Missing config file")
+		return
+	}
+
     if err != nil {
         log.Println("Error Retrieving the File")
         log.Println(err)
@@ -89,11 +96,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	fileString := string(fileBytes)
 	cfg.Content = fileString
 
-	if identifier == "" {
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
-		return
-	}
 
 	if cfg.Content != "" {
 		i, err := strconv.Atoi(r.PostFormValue("identifier"))
@@ -101,6 +103,13 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 			log.Fatal("Can't define used tool")
 		}
 		res.Identifier = i;
+
+		if identifier == "" {
+			w.WriteHeader(http.StatusBadRequest)
+			fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
+			return
+		}
+
 		log.Println("[+] Checking ...")
 		if i == 1 {
 			res.Content, res.Result, res.Color = cfg.ValidatePromtool()
