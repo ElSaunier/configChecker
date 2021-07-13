@@ -74,6 +74,13 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	// Taille de 10MB maximum
     r.ParseMultipartForm(10 << 20)
 
+	// Gestion des paramètres vides
+	if r.PostFormValue("identifier") == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
+		return
+	}
+
     file, _, err := r.FormFile("config")
 	/*if err == http.ErrMissingFile {
 		w.WriteHeader(http.StatusBadRequest)
@@ -103,12 +110,6 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 			log.Fatal("Can't define used tool")
 		}
 		res.Identifier = i;
-
-		if r.PostFormValue("identifier") == "" {
-			w.WriteHeader(http.StatusBadRequest)
-			fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
-			return
-		}
 
 		log.Println("[+] Checking ...")
 		if i == 1 {
