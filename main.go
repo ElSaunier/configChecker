@@ -75,12 +75,12 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
     r.ParseMultipartForm(10 << 20)
 
     file, _, err := r.FormFile("config")
-	if file == "" {
+	if r.FormFile("config") == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintf(w, "Missing config file")
 		return
 	}
-
+	
     if err != nil {
         log.Println("Error Retrieving the File")
         log.Println(err)
@@ -104,7 +104,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 		}
 		res.Identifier = i;
 
-		if identifier == "" {
+		if i == "" {
 			w.WriteHeader(http.StatusBadRequest)
 			fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
 			return
