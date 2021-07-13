@@ -89,6 +89,11 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	fileString := string(fileBytes)
 	cfg.Content = fileString
 
+	if identifier == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "Missing identifier (1 for Promtool | 2 for Amtool")
+		return
+	}
 
 	if cfg.Content != "" {
 		i, err := strconv.Atoi(r.PostFormValue("identifier"))
@@ -115,8 +120,9 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 	} else {
 		w.WriteHeader(http.StatusOK)
 	}
-	w.Write([]byte(res.Result))
 
+	w.Write([]byte(res.Result))
+	return
 }
 
 func main() {
