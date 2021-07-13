@@ -48,12 +48,16 @@ func sendHandler(w http.ResponseWriter, r *http.Request){
 				log.Fatal("Can't define used tool")
 			}
 			res.Identifier = i;
-    		log.Println("[+] Checking ...")
-			if i == 1 {
+    		switch i {
+			case 1:
 				res.Content, res.Result, res.Color = cfg.ValidatePromtool()
-			} else {
+			case 2:
 				res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
-			}
+			default:
+				res.Result = "Empty uploaded file"
+				res.Color = "red"
+				res.Content = cfg.Content
+			} 
 			log.Println("[-] Checking Finished")
 		} else {
 			res.Content = ""
@@ -112,11 +116,16 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 		res.Identifier = i;
 
 		log.Println("[+] Checking ...")
-		if i == 1 {
+		switch i {
+		case 1:
 			res.Content, res.Result, res.Color = cfg.ValidatePromtool()
-		} else {
+		case 2:
 			res.Content, res.Result, res.Color = cfg.ValidateAlertManager()
-		}
+		default:
+			res.Result = "Empty uploaded file"
+			res.Color = "red"
+			res.Content = cfg.Content
+		} 
 		log.Println("[-] Checking Finished")
 	} else {
 		fmt.Println("Here")
