@@ -46,7 +46,7 @@ This will delete your *bin/* directory, and thus delete the executable file.
 
 ## How to use
 
-## Verify your configuration
+### Verify your configuration
 
 To use the checker, you must copy paste or upload your *yml* file in the corresponding area.
 Also you have to pay attention to activate tab. There is to tabs, one permits you to check promtool files, and the second alertmanagertool ones. Therefore a baid choice can lead to a bad result.
@@ -56,8 +56,13 @@ Once your file got upload, you will see its content in the area.
 
 Then you can click on the button on the bottom of the page.
 
-## Observe the results
+### Observe the results
 
 <img src="img/Screenshot_Verif.PNG" alt="Verification" style="width:70%;"/>
-This will lead to the results page. You can see the errors of your configuration on the right of the screen, and to correct them.
+This will lead to the results page. You can see errors of your configuration on the right of the screen, and to correct them.
 After its correction, you will can copypaste the textarea content in your configuration file or to download it with the name *config.yml*
+
+## Contributing
+
+If you're interested in contributing to this project, don't hesitate to open a new issue. But, first, please be aware, and take notice of formers issues to see if ones correspond to your problem. Then you should be able to create a pull request in order to add new functionnalities. We ask you to verify your code managed to compile, and pass the test before submitting your PR.
+
