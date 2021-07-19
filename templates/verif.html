@@ -27,7 +27,7 @@
             <div id="compare">
                 <span>
                     <form method="POST" action="/">
-                        <textarea class="form-control" id="textareacontent" name="config" style="border:1px solid {{.Color}}">{{.Content}}</textarea>
+                        <textarea spellcheck="false" class="form-control" id="textareacontent" name="config" style="border:1px solid {{.Color}}">{{.Content}}</textarea>
                         <input type="number" name="identifier" value="{{.Identifier}}" style="display: none;"/>
                         <button type="submit" class="btn btn-primary myBtn">Vérifier</button>
                         <button type="button" class="btn btn-primary myBtn" onclick="savingFile()">Sauvegarder la configuration</button>
