@@ -3,7 +3,7 @@ image: golang:latest
 variables:
   # Please edit to your GitLab project
   REPO_NAME: outils.docapost.tech/gitlab/losaunier/configChecker
-  img: elsaunier/configchecker
+  IMG: elsaunier/configchecker
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
@@ -55,8 +55,8 @@ deploy:
   before_script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
   script:
-    - docker build -t $img .
-    - docker push $img
+    - docker build -t $IMG .
+    - docker push $IMG
   after_script:
     - docker logout
   tags:
