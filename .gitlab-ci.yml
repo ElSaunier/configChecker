@@ -22,7 +22,6 @@ format:
   stage: test
   image: elsaunier/go-promtool-amtool:latest
   script:
-    - ls /usr/bin
     - go fmt $(go list ./... | grep -v /vendor/)
     - go get $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
