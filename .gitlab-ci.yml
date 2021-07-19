@@ -19,6 +19,15 @@ stages:
   - deploy
 
 format:
+  only:
+    refs:
+      - master
+    changes:
+      - .gitlab-ci.yml
+      - Dockerfile
+      - main.go
+      - verify.go
+      - verify_test.go
   stage: test
   image: elsaunier/go-promtool-amtool:latest
   script:
@@ -48,6 +57,15 @@ compile:
     - configChecker
 
 deploy:
+  only:
+    refs:
+      - master
+    changes:
+      - .gitlab-ci.yml
+      - Dockerfile
+      - main.go
+      - verify.go
+      - verify_test.go
   stage: deploy
   image: docker.docapost.tech/prod/docker-make:latest
   services:
